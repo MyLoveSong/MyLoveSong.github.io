@@ -4,39 +4,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>个人名片</title>
+    <title>MyLoveSong - 娱乐产业解决方案</title>
 </head>
 
 <body>
-    <!-- 个人头像 -->
-    <img src="images/鸡哥肖像权.jpg" alt="个人头像" />
-
-    <!-- 导航栏 -->
+    <!-- 页头 (header) -->
     <header>
+        <div class="logo">
+            <h1>MyLoveSong</h1>
+        </div>
         <nav>
             <ul>
-                <li><a href="#">首页</a></li>
-                <li><a href="#">关于</a></li>
-                <li><a href="#">联系</a></li>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="products.html">产品</a></li>
+                <li><a href="services.html">服务</a></li>
+                <li><a href="about.html">关于我们</a></li>
+                <li><a href="contact.html">联系我们</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- 个人简介 -->
+    <!-- 主内容区 (main) -->
     <main>
-        <section>
-            <h1>个人简介</h1>
-            <p>我是亿原基，诞生于1996，伯克利大学进修，梦想作说唱领袖</p>
+        <!-- 英雄区域 (hero) -->
+        <section id="hero">
+            <h1>娱乐产业创新解决方案</h1>
+            <h2>唱、跳、Rap，推动娱乐产业发展</h2>
+            <p>为娱乐产业提供先进的数字化解决方案，助力歌手、舞者和创作者实现梦想，提升行业效率。</p>
+            <a href="products.html" class="cta-button">了解更多</a>
+            <img src="images/entertainment-background.jpg" alt="娱乐产业背景图" />
         </section>
 
-        <!-- 关于我：背景与技能介绍 -->
-        <article>
-            <section>
-                <h2>我的背景与技能</h2>
-                <p>我是一位充满激情的技术爱好者，拥有扎实的编程基础，并对创意设计充满热情。</p>
-            </section>
+        <!-- 个人背景与技能 (从 about.html 整合) -->
+        <section id="about">
+            <article>
+                <h2>关于我</h2>
+                <p>我是一位充满激情的娱乐产业爱好者，专注于音乐、舞蹈和创意设计。我致力于帮助艺术家和创作者提升他们的影响力和作品的市场价值。</p>
+                <h3>我的背景与技能</h3>
+                <p>我在娱乐产业拥有多年的经验，熟悉歌唱、舞蹈、Rap等多方面的内容创作。目前，我专注于为艺术家提供创意方向和市场推广支持。</p>
+            </article>
 
-            <!-- 教育经历或技能列表 -->
             <section>
                 <h3>教育经历</h3>
                 <table>
@@ -57,145 +64,108 @@
                 </table>
             </section>
 
-            <!-- 外部链接到 LinkedIn -->
+            <section>
+                <h3>我的技能</h3>
+                <ul>
+                    <li>音乐制作</li>
+                    <li>舞蹈编排</li>
+                    <li>Rap创作</li>
+                    <li>影视剪辑</li>
+                    <li>演艺策划</li>
+                </ul>
+            </section>
+
             <section>
                 <h3>我的 LinkedIn</h3>
                 <p>请访问我的 <a href="https://www.linkedin.com/in/your-linkedin-profile" target="_blank" rel="noopener noreferrer">LinkedIn 资料</a> 了解更多。</p>
             </section>
-        </article>
-
-        <!-- 我的技能 -->
-        <aside>
-            <section>
-                <h2>我的技能</h2>
-                <ul>
-                    <li>HTML</li>
-                    <li>CSS</li>
-                    <li>JavaScript</li>
-                </ul>
-            </section>
-        </aside>
-
-        <!-- 我的梦想 -->
-        <section>
-            <h2>我的梦想</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>姓名</th>
-                        <th>性别</th>
-                        <th>年龄</th>
-                        <th>学历</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>亿原基</td>
-                        <td>男</td>
-                        <td>18</td>
-                        <td>伯克利</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <table>
-                <thead>
-                    <tr>
-                        <th>技能</th>
-                        <th>掌握程度</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>篮球</td>
-                        <td>NBA级别</td>
-                    </tr>
-                    <tr>
-                        <td>唱</td>
-                        <td>亚洲天王</td>
-                    </tr>
-                    <tr>
-                        <td>rap</td>
-                        <td>格莱美</td>
-                    </tr>
-                </tbody>
-            </table>
         </section>
 
-        <!-- 我的工作经历 -->
-        <div class="experience" id="experience">
-            <h2>工作经历</h2>
-            <p>时代少年团の领头羊</p>
-        </div>
+        <!-- 产品特色 -->
+        <section id="products">
+            <h2>我们的核心产品</h2>
+            <article>
+                <h3>音乐创作平台</h3>
+                <p>为艺术家提供一站式音乐创作工具，助力创作、录制和发布音乐。</p>
+            </article>
+            <article>
+                <h3>舞蹈编排工具</h3>
+                <p>通过智能化工具帮助舞者和编舞师快速编排舞蹈，提高工作效率。</p>
+            </article>
+            <article>
+                <h3>创作者营销服务</h3>
+                <p>提供专业的创作者营销方案，帮助歌手、舞者和创作者扩大粉丝群体并提升影响力。</p>
+            </article>
+        </section>
 
-        <!-- 我的兴趣爱好 -->
-        <div class="hobby" id="hobby">
-            <h3>兴趣爱好</h3>
-            <p>唱</p>
-            <p>跳</p>
-            <p>Rap</p>
-            <p>篮球</p>
-        </div>
+        <!-- 服务介绍 -->
+        <section id="services">
+            <h2>专业服务</h2>
+            <ul>
+                <li>音乐制作</li>
+                <li>舞蹈培训与指导</li>
+                <li>艺人形象设计</li>
+                <li>线上营销与社交媒体推广</li>
+            </ul>
+        </section>
 
-        <!-- 兴趣爱好列表 -->
-        <ol>
-            <li>唱</li>
-            <li>跳</li>
-            <li>Rap</li>
-            <li>篮球</li>
-        </ol>
+        <!-- 客户评价 -->
+        <section id="testimonials">
+            <h2>客户说</h2>
+            <blockquote>
+                "MyLoveSong帮助我们在短时间内制作出高质量的音乐作品，提升了我们的演出效果..." - 张总，某音乐制作公司
+            </blockquote>
+            <blockquote>
+                "他们的舞蹈编排工具极大地提高了我们的排练效率，专业团队值得信赖..." - 李经理，某舞蹈工作室
+            </blockquote>
+            <blockquote>
+                "非常感谢MyLoveSong的市场推广服务，我们的歌曲在短时间内受到了大量粉丝的关注..." - 王总监，某娱乐公司
+            </blockquote>
+        </section>
+
+        <!-- 联系我们 -->
+        <section id="contact">
+            <h2>联系我们</h2>
+            <form action="submit.php" method="post">
+                <label for="name">姓名</label>
+                <input type="text" id="name" name="name" required />
+
+                <label for="email">邮箱</label>
+                <input type="email" id="email" name="email" required />
+
+                <label for="phone">电话</label>
+                <input type="text" id="phone" name="phone" />
+
+                <label for="message">询问内容</label>
+                <textarea id="message" name="message" required></textarea>
+
+                <button type="submit">提交</button>
+            </form>
+        </section>
     </main>
 
-    <!-- 表单 -->
-    <section>
-        <h2>填写表单</h2>
-        <form action="submit.php" method="post">
-            <label for="username">用户名</label>
-            <input type="text" id="username" name="username" />
-
-            <fieldset>
-                <legend>性别</legend>
-                <label>
-                    <input type="radio" name="gender" value="male" /> 男
-                </label>
-                <label>
-                    <input type="radio" name="gender" value="female" /> 女
-                </label>
-            </fieldset>
-
-            <label for="age">年龄：</label>
-            <input type="number" id="age" name="age" />
-
-            <label for="email">邮箱：</label>
-            <input type="email" id="email" name="email" />
-
-            <fieldset>
-                <legend>爱好</legend>
-                <label>
-                    <input type="checkbox" name="hobby" value="sing" /> 唱
-                </label>
-                <label>
-                    <input type="checkbox" name="hobby" value="dance" /> 跳
-                </label>
-                <label>
-                    <input type="checkbox" name="hobby" value="rap" /> Rap
-                </label>
-                <label>
-                    <input type="checkbox" name="hobby" value="basketball" /> 篮球
-                </label>
-            </fieldset>
-
-            <label for="city">城市：</label>
-            <select name="city" id="city">
-                <option value="beijing">北京</option>
-                <option value="shanghai">上海</option>
-                <option value="guangzhou">广州</option>
-            </select>
-
-            <button type="submit">提交</button>
-        </form>
-    </section>
-
+    <!-- 页脚 (footer) -->
+    <footer>
+        <p>© 2025 MyLoveSong. 保留所有权利。</p>
+        <nav>
+            <ul>
+                <li><a href="privacy-policy.html">隐私政策</a></li>
+                <li><a href="terms-of-use.html">使用条款</a></li>
+                <li><a href="contact.html">联系我们</a></li>
+            </ul>
+        </nav>
+        <div class="social-media">
+            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+                <img src="images/facebook-icon.png" alt="Facebook" />
+            </a>
+            <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
+                <img src="images/twitter-icon.png" alt="Twitter" />
+            </a>
+            <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
+                <img src="images/linkedin-icon.png" alt="LinkedIn" />
+            </a>
+        </div>
+    </footer>
 </body>
 
 </html>
