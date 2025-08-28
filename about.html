@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人名片</title>
+</head>
+
+<body>
+    <!-- 个人头像 -->
+    <img src="images/鸡哥肖像权.jpg" alt="个人头像" />
+
+    <!-- 导航栏 -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">首页</a></li>
+                <li><a href="#">关于</a></li>
+                <li><a href="#">联系</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 个人简介 -->
+    <main>
+        <section>
+            <h1>个人简介</h1>
+            <p>我是亿原基，诞生于1996，伯克利大学进修，梦想作说唱领袖</p>
+        </section>
+
+        <!-- 关于我：背景与技能介绍 -->
+        <article>
+            <section>
+                <h2>我的背景与技能</h2>
+                <p>我是一位充满激情的技术爱好者，拥有扎实的编程基础，并对创意设计充满热情。</p>
+            </section>
+
+            <!-- 教育经历或技能列表 -->
+            <section>
+                <h3>教育经历</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>学校</th>
+                            <th>学位</th>
+                            <th>年份</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>伯克利大学</td>
+                            <td>本科</td>
+                            <td>2014-2018</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- 外部链接到 LinkedIn -->
+            <section>
+                <h3>我的 LinkedIn</h3>
+                <p>请访问我的 <a href="https://www.linkedin.com/in/your-linkedin-profile" target="_blank" rel="noopener noreferrer">LinkedIn 资料</a> 了解更多。</p>
+            </section>
+        </article>
+
+        <!-- 我的技能 -->
+        <aside>
+            <section>
+                <h2>我的技能</h2>
+                <ul>
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>JavaScript</li>
+                </ul>
+            </section>
+        </aside>
+
+        <!-- 我的梦想 -->
+        <section>
+            <h2>我的梦想</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>姓名</th>
+                        <th>性别</th>
+                        <th>年龄</th>
+                        <th>学历</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>亿原基</td>
+                        <td>男</td>
+                        <td>18</td>
+                        <td>伯克利</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>技能</th>
+                        <th>掌握程度</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>篮球</td>
+                        <td>NBA级别</td>
+                    </tr>
+                    <tr>
+                        <td>唱</td>
+                        <td>亚洲天王</td>
+                    </tr>
+                    <tr>
+                        <td>rap</td>
+                        <td>格莱美</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- 我的工作经历 -->
+        <div class="experience" id="experience">
+            <h2>工作经历</h2>
+            <p>时代少年团の领头羊</p>
+        </div>
+
+        <!-- 我的兴趣爱好 -->
+        <div class="hobby" id="hobby">
+            <h3>兴趣爱好</h3>
+            <p>唱</p>
+            <p>跳</p>
+            <p>Rap</p>
+            <p>篮球</p>
+        </div>
+
+        <!-- 兴趣爱好列表 -->
+        <ol>
+            <li>唱</li>
+            <li>跳</li>
+            <li>Rap</li>
+            <li>篮球</li>
+        </ol>
+    </main>
+
+    <!-- 表单 -->
+    <section>
+        <h2>填写表单</h2>
+        <form action="submit.php" method="post">
+            <label for="username">用户名</label>
+            <input type="text" id="username" name="username" />
+
+            <fieldset>
+                <legend>性别</legend>
+                <label>
+                    <input type="radio" name="gender" value="male" /> 男
+                </label>
+                <label>
+                    <input type="radio" name="gender" value="female" /> 女
+                </label>
+            </fieldset>
+
+            <label for="age">年龄：</label>
+            <input type="number" id="age" name="age" />
+
+            <label for="email">邮箱：</label>
+            <input type="email" id="email" name="email" />
+
+            <fieldset>
+                <legend>爱好</legend>
+                <label>
+                    <input type="checkbox" name="hobby" value="sing" /> 唱
+                </label>
+                <label>
+                    <input type="checkbox" name="hobby" value="dance" /> 跳
+                </label>
+                <label>
+                    <input type="checkbox" name="hobby" value="rap" /> Rap
+                </label>
+                <label>
+                    <input type="checkbox" name="hobby" value="basketball" /> 篮球
+                </label>
+            </fieldset>
+
+            <label for="city">城市：</label>
+            <select name="city" id="city">
+                <option value="beijing">北京</option>
+                <option value="shanghai">上海</option>
+                <option value="guangzhou">广州</option>
+            </select>
+
+            <button type="submit">提交</button>
+        </form>
+    </section>
+
+</body>
+
+</html>
