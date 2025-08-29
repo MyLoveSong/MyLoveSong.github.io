@@ -4,22 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>联系我们 - MyLoveSong</title>
+    <title>音乐合作联系 - 音乐盛宴</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body class="contact-page">
     <!-- 页头 (header) -->
     <header>
         <div class="logo">
-            <h1>MyLoveSong</h1>
+            <h1>🎵 音乐盛宴</h1>
         </div>
         <nav>
             <ul>
                 <li><a href="index.html">首页</a></li>
-                <li><a href="products.html">产品</a></li>
-                <li><a href="services.html">服务</a></li>
-                <li><a href="about.html">关于我们</a></li>
-                <li><a href="contact.html">联系我们</a></li>
+                <li><a href="products.html">音乐作品</a></li>
+                <li><a href="services.html">音乐表演</a></li>
+                <li><a href="about.html">关于我</a></li>
+                <li><a href="contact.html">音乐合作</a></li>
             </ul>
         </nav>
     </header>
@@ -27,43 +28,59 @@
     <!-- 主内容区 (main) -->
     <main>
         <section id="contact">
-            <h2>联系我们</h2>
-            <form action="submit.php" method="post">
-                <label for="name">姓名</label>
-                <input type="text" id="name" name="name" required />
+            <h2>音乐合作与交流</h2>
+            <p class="section-intro">无论您是音乐爱好者、演奏家还是创作者，我们都欢迎与您进行音乐交流与合作。让我们一起用音乐连接心灵，创造美好的艺术体验。</p>
+            <form action="submit.php" method="post" aria-label="联系表单">
+                <label for="name">姓名 <span aria-label="必填项">*</span></label>
+                <input type="text" id="name" name="name" required 
+                       aria-label="请输入您的姓名" 
+                       aria-describedby="name-help" />
+                <div id="name-help" class="form-help">请输入您的真实姓名</div>
 
-                <label for="email">邮箱</label>
-                <input type="email" id="email" name="email" required />
+                <label for="email">邮箱 <span aria-label="必填项">*</span></label>
+                <input type="email" id="email" name="email" required 
+                       aria-label="请输入您的邮箱地址" 
+                       aria-describedby="email-help" />
+                <div id="email-help" class="form-help">我们将通过此邮箱与您联系</div>
 
                 <label for="phone">电话</label>
-                <input type="text" id="phone" name="phone" />
+                <input type="text" id="phone" name="phone" 
+                       aria-label="请输入您的电话号码" 
+                       aria-describedby="phone-help" />
+                <div id="phone-help" class="form-help">可选，便于我们快速联系您</div>
 
-                <label for="message">询问内容</label>
-                <textarea id="message" name="message" required></textarea>
+                <label for="message">询问内容 <span aria-label="必填项">*</span></label>
+                <textarea id="message" name="message" required 
+                          aria-label="请详细描述您的需求" 
+                          aria-describedby="message-help"></textarea>
+                <div id="message-help" class="form-help">请详细描述您的需求，以便我们为您提供更好的服务</div>
 
-                <button type="submit">提交</button>
+                <button type="submit" class="submit-btn" aria-label="提交联系表单">提交</button>
             </form>
         </section>
     </main>
 
     <!-- 页脚 (footer) -->
     <footer>
-        <p>© 2025 MyLoveSong. 保留所有权利。</p>
+        <p>© 2025 音乐盛宴. 让音乐连接世界，传递爱与美好。</p>
         <nav>
             <ul>
                 <li><a href="terms-of-use.html">使用条款</a></li>
-                <li><a href="contact.html">联系我们</a></li>
+                <li><a href="contact.html">音乐合作</a></li>
             </ul>
         </nav>
         <div class="social-media">
-            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
-                <img src="images/facebook-icon.png" alt="Facebook" />
+            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" aria-label="访问我们的Facebook页面" class="social-link">
+                <span>📘</span>
+                <span class="social-text">Facebook</span>
             </a>
-            <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
-                <img src="images/twitter-icon.png" alt="Twitter" />
+            <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer" aria-label="访问我们的Twitter页面" class="social-link">
+                <span>🐦</span>
+                <span class="social-text">Twitter</span>
             </a>
-            <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
-                <img src="images/linkedin-icon.png" alt="LinkedIn" />
+            <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="访问我们的LinkedIn页面" class="social-link">
+                <span>💼</span>
+                <span class="social-text">LinkedIn</span>
             </a>
         </div>
     </footer>

@@ -1,0 +1,453 @@
+/* =================================
+   布局容器
+   ================================= */
+
+/* 页面主容器 */
+header, main, footer {
+    padding: var(--spacing-md);
+}
+
+section, article {
+    margin-bottom: var(--spacing-xl);
+}
+
+/* =================================
+   导航栏布局 (Flexbox)
+   ================================= */
+
+header {
+    background-color: var(--dark-color);
+    color: var(--white);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: var(--spacing-md) var(--spacing-xl);
+    position: relative;
+    overflow: hidden;
+}
+
+/* 页面特定主题渐变 */
+.about-page header {
+    background: linear-gradient(135deg, var(--about-theme) 0%, var(--dark-color) 100%);
+}
+
+.products-page header {
+    background: linear-gradient(135deg, var(--products-theme) 0%, var(--dark-color) 100%);
+}
+
+.services-page header {
+    background: linear-gradient(135deg, var(--services-theme) 0%, var(--dark-color) 100%);
+}
+
+.contact-page header {
+    background: linear-gradient(135deg, var(--contact-theme) 0%, var(--dark-color) 100%);
+}
+
+.logo h1 {
+    color: var(--light-color);
+    margin: 0;
+    font-size: 1.8rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+header nav ul {
+    display: flex;
+    list-style: none;
+    gap: var(--spacing-xl);
+    flex-wrap: wrap;
+}
+
+header nav a {
+    color: var(--light-color);
+    font-weight: 500;
+    padding: var(--spacing-sm) 0;
+    border-bottom: 2px solid transparent;
+    transition: all var(--transition-normal);
+    position: relative;
+}
+
+header nav a:hover {
+    text-decoration: none;
+    border-bottom-color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+header nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: all var(--transition-normal);
+    transform: translateX(-50%);
+}
+
+header nav a:hover::after {
+    width: 100%;
+}
+
+/* =================================
+   Hero区域特殊样式
+   ================================= */
+
+#hero {
+    text-align: center;
+    padding: var(--spacing-xxl) 0;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(124, 58, 237, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(217, 119, 6, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, rgba(30, 64, 175, 0.4) 0%, transparent 50%),
+        linear-gradient(135deg, 
+            var(--primary-dark) 0%, 
+            var(--accent-color) 25%,
+            var(--primary-color) 50%,
+            var(--secondary-color) 75%,
+            var(--primary-dark) 100%);
+    color: var(--white);
+    border-radius: var(--border-radius-lg);
+    margin-bottom: var(--spacing-xxl);
+    position: relative;
+    overflow: hidden;
+}
+
+#hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="music" patternUnits="userSpaceOnUse" width="40" height="40"><circle cx="8" cy="8" r="1" fill="white" opacity="0.1"/><circle cx="32" cy="25" r="0.8" fill="white" opacity="0.08"/><path d="M15 10 L15 25 M25 8 L25 23" stroke="white" stroke-width="0.5" opacity="0.06"/></pattern></defs><rect width="100" height="100" fill="url(%23music)"/></svg>'),
+        linear-gradient(45deg, transparent 25%, rgba(255,255,255,0.02) 25%, rgba(255,255,255,0.02) 50%, transparent 50%, transparent 75%, rgba(255,255,255,0.02) 75%);
+    background-size: 80px 80px, 20px 20px;
+    animation: musicPattern 20s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes musicPattern {
+    0% { background-position: 0 0, 0 0; }
+    100% { background-position: 80px 80px, 20px 20px; }
+}
+
+#hero h1, #hero h2 {
+    color: var(--white);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+#hero .cta-button {
+    margin: var(--spacing-xl) var(--spacing-md) var(--spacing-md) 0;
+    box-shadow: var(--shadow-lg);
+    transform: translateY(0);
+    transition: all var(--transition-normal);
+}
+
+#hero .cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+
+/* =================================
+   Grid布局系统
+   ================================= */
+
+/* About页面Grid布局 */
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+    align-items: start;
+}
+
+/* 产品/服务Grid布局 */
+.products-grid, .services-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xl);
+    margin-top: var(--spacing-md);
+}
+
+/* =================================
+   页脚样式
+   ================================= */
+
+footer {
+    background-color: var(--dark-color);
+    color: var(--light-color);
+    text-align: center;
+    padding: var(--spacing-xl);
+    margin-top: var(--spacing-xxl);
+    position: relative;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+}
+
+footer nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: var(--spacing-xl);
+    margin: var(--spacing-md) 0;
+}
+
+footer nav a {
+    color: var(--light-color);
+    transition: color var(--transition-normal);
+}
+
+footer nav a:hover {
+    color: var(--primary-color);
+}
+
+.social-media {
+    margin-top: var(--spacing-md);
+}
+
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin: 0 var(--spacing-md);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--border-radius);
+    background-color: rgba(255,255,255,0.1);
+    transition: all var(--transition-normal);
+    text-decoration: none;
+    color: var(--light-color);
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.social-link:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
+    color: var(--white);
+    text-decoration: none;
+}
+
+.social-link span:first-child {
+    font-size: 1.2rem;
+    transition: transform var(--transition-normal);
+}
+
+.social-link:hover span:first-child {
+    transform: scale(1.2);
+}
+
+.social-text {
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+/* =================================
+   移动端优先响应式设计 (0px - 767px)
+   ================================= */
+
+/* 移动端导航栏调整 */
+@media (max-width: 767px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+        padding: var(--spacing-md);
+    }
+    
+    header nav ul {
+        margin-top: var(--spacing-md);
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+    
+    main {
+        padding: var(--spacing-md);
+    }
+    
+    #hero {
+        padding: var(--spacing-xl) var(--spacing-md);
+    }
+    
+    h1 {
+        font-size: var(--font-size-xxl);
+    }
+    
+    h2 {
+        font-size: var(--font-size-xl);
+    }
+    
+    footer nav ul {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+    
+    .social-link {
+        margin: var(--spacing-xs);
+        padding: var(--spacing-xs) var(--spacing-sm);
+        font-size: var(--font-size-sm);
+    }
+    
+    .social-text {
+        display: none;
+    }
+    
+    .social-link span:first-child {
+        font-size: 1.5rem;
+    }
+}
+
+/* =================================
+   平板端适配 (768px+)
+   ================================= */
+
+@media (min-width: 768px) {
+    /* 容器最大宽度 */
+    main {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: var(--spacing-xl);
+    }
+    
+    /* 恢复水平导航 */
+    header {
+        flex-direction: row;
+    }
+    
+    header nav ul {
+        flex-direction: row;
+        margin-top: 0;
+    }
+    
+    /* About页面Grid布局 */
+    .about-content {
+        grid-template-columns: 2fr 1fr;
+    }
+    
+    /* 产品/服务Flexbox布局 */
+    .products-grid, .services-grid {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    
+    .products-grid article, .services-grid article {
+        flex-basis: calc(50% - var(--spacing-md));
+        margin-bottom: 0;
+    }
+    
+    /* 团队和评价网格 */
+    .team-grid, .testimonials-grid {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: var(--spacing-xl);
+    }
+    
+    .team-member, .testimonial-card {
+        flex-basis: calc(50% - var(--spacing-md));
+    }
+    
+    /* 页脚水平布局 */
+    footer nav ul {
+        flex-direction: row;
+    }
+}
+
+/* =================================
+   桌面端优化 (1024px+)
+   ================================= */
+
+@media (min-width: 1024px) {
+    /* 更大的容器宽度 */
+    main {
+        max-width: 1400px;
+        padding: var(--spacing-xxl);
+    }
+    
+    header {
+        padding: var(--spacing-md) var(--spacing-xxl);
+    }
+    
+    /* 产品页面三栏布局 */
+    .products-grid article, .services-grid article {
+        flex-basis: calc(33.333% - var(--spacing-lg));
+    }
+    
+    /* 团队和评价三栏布局 */
+    .team-member {
+        flex-basis: calc(33.333% - var(--spacing-lg));
+    }
+    
+    .testimonial-card {
+        flex-basis: calc(50% - var(--spacing-md));
+    }
+    
+    /* 更大的字体 */
+    h1 {
+        font-size: var(--font-size-hero);
+    }
+    
+    h2 {
+        font-size: var(--font-size-xxl);
+    }
+    
+    /* Hero区域优化 */
+    #hero {
+        padding: 4rem 0;
+    }
+}
+
+/* =================================
+   页面特定Banner样式
+   ================================= */
+
+.page-banner {
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    padding: var(--spacing-xxl) 0;
+    text-align: center;
+    position: relative;
+    margin-bottom: var(--spacing-xxl);
+}
+
+.page-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.4);
+}
+
+.page-banner-content {
+    position: relative;
+    z-index: 1;
+    color: var(--white);
+}
+
+.about-banner {
+    background: linear-gradient(135deg, var(--about-theme), var(--dark-color));
+}
+
+.products-banner {
+    background: linear-gradient(135deg, var(--products-theme), var(--dark-color));
+}
+
+.services-banner {
+    background: linear-gradient(135deg, var(--services-theme), var(--dark-color));
+}
+
+.contact-banner {
+    background: linear-gradient(135deg, var(--contact-theme), var(--dark-color));
+}

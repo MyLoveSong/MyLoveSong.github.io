@@ -4,62 +4,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我们的产品 - MyLoveSong</title>
+    <title>音乐作品集 - 音乐盛宴</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body class="products-page">
     <!-- 页头 (header) -->
     <header>
         <div class="logo">
-            <h1>MyLoveSong</h1>
+            <h1>🎵 音乐盛宴</h1>
         </div>
         <nav>
             <ul>
                 <li><a href="index.html">首页</a></li>
-                <li><a href="products.html">产品</a></li>
-                <li><a href="services.html">服务</a></li>
-                <li><a href="about.html">关于我们</a></li>
-                <li><a href="contact.html">联系我们</a></li>
+                <li><a href="products.html">音乐作品</a></li>
+                <li><a href="services.html">音乐表演</a></li>
+                <li><a href="about.html">关于我</a></li>
+                <li><a href="contact.html">音乐合作</a></li>
             </ul>
         </nav>
     </header>
 
     <!-- 主内容区 (main) -->
     <main>
-        <section id="products">
-            <h2>我们的核心产品</h2>
-            <article>
-                <h3>音乐创作平台</h3>
-                <p>为艺术家提供一站式音乐创作工具，助力创作、录制和发布音乐。</p>
-            </article>
-            <article>
-                <h3>舞蹈编排工具</h3>
-                <p>通过智能化工具帮助舞者和编舞师快速编排舞蹈，提高工作效率。</p>
-            </article>
-            <article>
-                <h3>创作者营销服务</h3>
-                <p>提供专业的创作者营销方案，帮助歌手、舞者和创作者扩大粉丝群体并提升影响力。</p>
-            </article>
+        <section id="music-albums">
+            <h2>音乐作品集</h2>
+            <p class="section-intro">探索我们的音乐世界，从古典巴赫到现代创新，每一首作品都承载着对音乐的热爱与追求。</p>
+            <div class="products-grid">
+                <article class="card">
+                    <h3>🎵 音乐创作平台</h3>
+                    <p>为艺术家提供一站式音乐创作工具，助力创作、录制和发布音乐。</p>
+                    <div class="case-study">
+                        <h4>成功案例</h4>
+                        <p><strong>歌手MYLOVESONG</strong>通过我们的平台，在短短3个月内创作并发布了首张专辑《ai》，获得了超过100万次播放量。</p>
+                    </div>
+                    <ul class="features-list">
+                        <li>专业级音频录制</li>
+                        <li>AI辅助编曲</li>
+                        <li>一键发布到各大平台</li>
+                        <li>版权保护服务</li>
+                    </ul>
+                </article>
+                <article class="card">
+                    <h3>💃 舞蹈编排工具</h3>
+                    <p>通过智能化工具帮助舞者和编舞师快速编排舞蹈，提高工作效率。</p>
+                    <div class="case-study">
+                        <h4>成功案例</h4>
+                        <p><strong>舞蹈工作室"律动空间"</strong>使用我们的编排工具，编舞效率提升了200%，学员满意度达到98%。</p>
+                    </div>
+                    <ul class="features-list">
+                        <li>3D动作建模</li>
+                        <li>音乐节拍同步</li>
+                        <li>动作库智能推荐</li>
+                        <li>教学视频自动生成</li>
+                    </ul>
+                </article>
+                <article class="card">
+                    <h3>📈 创作者营销服务</h3>
+                    <p>提供专业的创作者营销方案，帮助歌手、舞者和创作者扩大粉丝群体并提升影响力。</p>
+                    <div class="case-study">
+                        <h4>成功案例</h4>
+                        <p><strong>C4LLMOVSUE</strong>通过我们的营销服务，粉丝数量从1000增长到50万，成功签约知名唱片公司。</p>
+                    </div>
+                    <ul class="features-list">
+                        <li>社交媒体策略</li>
+                        <li>品牌形象设计</li>
+                        <li>粉丝互动管理</li>
+                        <li>商业合作对接</li>
+                    </ul>
+                </article>
+            </div>
         </section>
     </main>
 
     <!-- 页脚 (footer) -->
     <footer>
-        <p>© 2025 MyLoveSong. 保留所有权利。</p>
+        <p>© 2025 音乐盛宴. 让音乐连接世界，传递爱与美好。</p>
         <nav>
             <ul>
-                <li><a href="contact.html">联系我们</a></li>
+                <li><a href="contact.html">音乐合作</a></li>
             </ul>
         </nav>
         <div class="social-media">
-            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
-                <img src="images/facebook-icon.png" alt="Facebook" />
+            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" aria-label="访问我们的Facebook页面" class="social-link">
+                <span>📘</span>
+                <span class="social-text">Facebook</span>
             </a>
-            <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
-                <img src="images/twitter-icon.png" alt="Twitter" />
+            <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer" aria-label="访问我们的Twitter页面" class="social-link">
+                <span>🐦</span>
+                <span class="social-text">Twitter</span>
             </a>
-            <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
-                <img src="images/linkedin-icon.png" alt="LinkedIn" />
+            <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="访问我们的LinkedIn页面" class="social-link">
+                <span>💼</span>
+                <span class="social-text">LinkedIn</span>
             </a>
         </div>
     </footer>

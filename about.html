@@ -4,20 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>个人名片</title>
+    <title>关于我 - 音乐盛宴</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body class="about-page">
     <!-- 个人头像 -->
-    <img src="images/鸡哥肖像权.jpg" alt="个人头像" />
+    <img src="images/鸡哥肖像权.jpg" alt="亿原基的个人肖像照片，展现专业和友好的形象" class="profile-image" />
 
     <!-- 导航栏 -->
     <header>
+        <div class="logo">
+            <h1>🎵 音乐盛宴</h1>
+        </div>
         <nav>
             <ul>
-                <li><a href="#">首页</a></li>
-                <li><a href="#">关于</a></li>
-                <li><a href="#">联系</a></li>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="products.html">音乐作品</a></li>
+                <li><a href="services.html">音乐表演</a></li>
+                <li><a href="about.html">关于我</a></li>
+                <li><a href="contact.html">音乐合作</a></li>
             </ul>
         </nav>
     </header>
@@ -25,174 +31,189 @@
     <!-- 个人简介 -->
     <main>
         <section>
-            <h1>个人简介</h1>
-            <p>我是亿原基，诞生于1996，伯克利大学进修，梦想作说唱领袖</p>
+            <h1>关于我</h1>
+            <p>我是一位充满激情的音乐家，致力于探索音乐的无限可能。从古典巴赫的严谨精妙到现代音乐的自由创新，我用音乐诠释生活，用旋律连接心灵。</p>
+            <p class="quote">"Hast du Bach gehört? Kannst du Bach spielen? Ich singe jetzt diese Song für dich, hast du verstanden? Liebe, ich liebe dich." —— 这是我的真挚。</p>
         </section>
 
-        <!-- 关于我：背景与技能介绍 -->
-        <article>
-            <section>
-                <h2>我的背景与技能</h2>
-                <p>我是一位充满激情的技术爱好者，拥有扎实的编程基础，并对创意设计充满热情。</p>
-            </section>
+        <!-- Grid布局容器 -->
+        <div class="about-content">
+            <!-- 主内容区 -->
+            <article>
+                <section>
+                    <h2>我的音乐背景</h2>
+                    <p>我是一位多元化的音乐家，精通古典钢琴演奏，同时热爱现代音乐创作。我相信音乐是世界通用的语言，能够跨越文化和语言的界限，直抵人心深处。</p>
+                </section>
 
-            <!-- 教育经历或技能列表 -->
-            <section>
-                <h3>教育经历</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>学校</th>
-                            <th>学位</th>
-                            <th>年份</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>伯克利大学</td>
-                            <td>本科</td>
-                            <td>2014-2018</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
+                <!-- 音乐教育经历 -->
+                <section>
+                    <h3>音乐教育历程</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>学习阶段</th>
+                                <th>专业方向</th>
+                                <th>时期</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>音乐学院</td>
+                                <td>古典钢琴演奏</td>
+                                <td>2014-2018</td>
+                            </tr>
+                            <tr>
+                                <td>维也纳音乐学院</td>
+                                <td>巴赫作品研习</td>
+                                <td>2018-2020</td>
+                            </tr>
+                            <tr>
+                                <td>现代音乐工作坊</td>
+                                <td>跨界音乐创作</td>
+                                <td>2020-至今</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
 
-            <!-- 外部链接到 LinkedIn -->
-            <section>
-                <h3>我的 LinkedIn</h3>
-                <p>请访问我的 <a href="https://www.linkedin.com/in/your-linkedin-profile" target="_blank" rel="noopener noreferrer">LinkedIn 资料</a> 了解更多。</p>
-            </section>
-        </article>
+                <!-- 音乐理念 -->
+                <section>
+                    <h3>我的音乐理念</h3>
+                    <p>音乐不仅仅是声音的艺术，更是情感的载体和心灵的桥梁。我致力于将古典音乐的深邃与现代音乐的活力相结合，创造出能够触动人心的音乐作品。欢迎通过 <a href="contact.html">音乐合作页面</a> 与我交流。</p>
+                </section>
+            </article>
 
-        <!-- 我的技能 -->
-        <aside>
-            <section>
-                <h2>我的技能</h2>
-                <ul>
-                    <li>HTML</li>
-                    <li>CSS</li>
-                    <li>JavaScript</li>
-                </ul>
-            </section>
-        </aside>
+            <!-- 侧边栏 -->
+            <aside>
+                <section>
+                    <h2>音乐专长</h2>
+                    <ul class="skills-list">
+                        <li>古典钢琴</li>
+                        <li>巴赫演绎</li>
+                        <li>音乐创作</li>
+                        <li>跨界融合</li>
+                        <li>音乐制作</li>
+                    </ul>
+                </section>
+            </aside>
+        </div>
 
-        <!-- 我的梦想 -->
+        <!-- 我的音乐愿景 -->
         <section>
-            <h2>我的梦想</h2>
+            <h2>我的音乐愿景</h2>
             <table>
                 <thead>
                     <tr>
-                        <th>姓名</th>
-                        <th>性别</th>
-                        <th>年龄</th>
-                        <th>学历</th>
+                        <th>音乐风格</th>
+                        <th>代表作品</th>
+                        <th>艺术特色</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>亿原基</td>
-                        <td>男</td>
-                        <td>18</td>
-                        <td>伯克利</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <table>
-                <thead>
-                    <tr>
-                        <th>技能</th>
-                        <th>掌握程度</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>篮球</td>
-                        <td>NBA级别</td>
+                        <td>古典钢琴</td>
+                        <td>巴赫变奏曲集</td>
+                        <td>精准技巧与情感表达</td>
                     </tr>
                     <tr>
-                        <td>唱</td>
-                        <td>亚洲天王</td>
+                        <td>原创音乐</td>
+                        <td>心灵之声专辑</td>
+                        <td>多语言深情演绎</td>
                     </tr>
                     <tr>
-                        <td>rap</td>
-                        <td>格莱美</td>
+                        <td>跨界实验</td>
+                        <td>古典电子融合</td>
+                        <td>传统与现代的完美结合</td>
                     </tr>
                 </tbody>
             </table>
         </section>
 
-        <!-- 我的工作经历 -->
+        <!-- 我的音乐历程 -->
         <div class="experience" id="experience">
-            <h2>工作经历</h2>
-            <p>时代少年团の领头羊</p>
+            <h2>音乐历程</h2>
+            <p>从古典音乐殿堂到现代创作舞台，我在音乐的道路上不断探索，用心灵诠释每一个音符，用激情点燃每一场演出。</p>
         </div>
 
-        <!-- 我的兴趣爱好 -->
+        <!-- 音乐追求 -->
         <div class="hobby" id="hobby">
-            <h3>兴趣爱好</h3>
-            <p>唱</p>
-            <p>跳</p>
-            <p>Rap</p>
-            <p>篮球</p>
+            <h3>音乐追求</h3>
+            <p>🎹 钢琴演奏的精湛技艺</p>
+            <p>🎼 音乐创作的无限灵感</p>
+            <p>🎤 多语言演唱的文化桥梁</p>
+            <p>🎪 跨界融合的艺术实验</p>
         </div>
 
-        <!-- 兴趣爱好列表 -->
+        <!-- 音乐理想排序 -->
         <ol>
-            <li>唱</li>
-            <li>跳</li>
-            <li>Rap</li>
-            <li>篮球</li>
+            <li>传承古典音乐的永恒魅力</li>
+            <li>创作触动人心的原创作品</li>
+            <li>探索音乐的跨界可能性</li>
+            <li>用音乐连接世界各地的心灵</li>
         </ol>
     </main>
 
-    <!-- 表单 -->
+    <!-- 音乐交流表单 -->
     <section>
-        <h2>填写表单</h2>
-        <form action="submit.php" method="post">
+        <h2>音乐交流表单</h2>
+        <p>欢迎填写表单，让我们更好地了解您的音乐喜好和交流意向。</p>
+        <form action="submit.php" method="post" aria-label="个人信息表单">
             <label for="username">用户名</label>
-            <input type="text" id="username" name="username" />
+            <input type="text" id="username" name="username" 
+                   aria-label="请输入用户名" 
+                   aria-describedby="username-help" />
+            <div id="username-help" class="form-help">用于显示的昵称</div>
 
             <fieldset>
                 <legend>性别</legend>
                 <label>
-                    <input type="radio" name="gender" value="male" /> 男
+                    <input type="radio" name="gender" value="male" 
+                           aria-label="选择性别为男性" /> 男
                 </label>
                 <label>
-                    <input type="radio" name="gender" value="female" /> 女
+                    <input type="radio" name="gender" value="female" 
+                           aria-label="选择性别为女性" /> 女
                 </label>
             </fieldset>
 
             <label for="age">年龄：</label>
-            <input type="number" id="age" name="age" />
+            <input type="number" id="age" name="age" 
+                   aria-label="请输入您的年龄" 
+                   min="1" max="120" />
 
             <label for="email">邮箱：</label>
-            <input type="email" id="email" name="email" />
+            <input type="email" id="email" name="email" 
+                   aria-label="请输入您的邮箱地址" />
 
             <fieldset>
-                <legend>爱好</legend>
+                <legend>音乐兴趣</legend>
                 <label>
-                    <input type="checkbox" name="hobby" value="sing" /> 唱
+                    <input type="checkbox" name="music_interest" value="classical" 
+                           aria-label="选择古典音乐作为兴趣" /> 古典音乐
                 </label>
                 <label>
-                    <input type="checkbox" name="hobby" value="dance" /> 跳
+                    <input type="checkbox" name="music_interest" value="jazz" 
+                           aria-label="选择爵士乐作为兴趣" /> 爵士乐
                 </label>
                 <label>
-                    <input type="checkbox" name="hobby" value="rap" /> Rap
+                    <input type="checkbox" name="music_interest" value="pop" 
+                           aria-label="选择流行音乐作为兴趣" /> 流行音乐
                 </label>
                 <label>
-                    <input type="checkbox" name="hobby" value="basketball" /> 篮球
+                    <input type="checkbox" name="music_interest" value="electronic" 
+                           aria-label="选择电子音乐作为兴趣" /> 电子音乐
                 </label>
             </fieldset>
 
             <label for="city">城市：</label>
-            <select name="city" id="city">
+            <select name="city" id="city" aria-label="请选择您所在的城市">
+                <option value="">请选择城市</option>
                 <option value="beijing">北京</option>
                 <option value="shanghai">上海</option>
                 <option value="guangzhou">广州</option>
             </select>
 
-            <button type="submit">提交</button>
+            <button type="submit" class="submit-btn" aria-label="提交个人信息表单">提交</button>
         </form>
     </section>
 
