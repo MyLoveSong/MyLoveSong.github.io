@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="page-type" content="blog">
+    <title>我的博客 - 轻量级Markdown博客系统</title>
+    <meta name="description" content="一个功能完整、性能优异的轻量级Markdown博客系统，支持动态内容渲染、搜索功能、主题切换等高级特性">
+    <meta name="keywords" content="博客,Markdown,JavaScript,Web开发,前端技术,响应式设计">
+    <meta name="author" content="博客系统开发者">
+    
+    <!-- Open Graph 元数据 -->
+    <meta property="og:title" content="我的博客 - 轻量级Markdown博客系统">
+    <meta property="og:description" content="一个功能完整、性能优异的轻量级Markdown博客系统">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="images/logo.png">
+    
+    <!-- Twitter Card 元数据 -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="我的博客 - 轻量级Markdown博客系统">
+    <meta name="twitter:description" content="一个功能完整、性能优异的轻量级Markdown博客系统">
+    <meta name="twitter:image" content="images/logo.png">
+    
+    <!-- 样式文件 -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/typography.css">
+    <link rel="stylesheet" href="css/blog.css">
+    
+    <!-- 图标 -->
+    <link rel="icon" href="images/logo.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="images/logo.png">
+    
+    <!-- 预加载关键资源 -->
+    <link rel="preload" href="js/blog-system.js" as="script">
+    <link rel="preload" href="css/blog.css" as="style">
+    <link rel="preload" href="posts/welcome.md" as="fetch" crossorigin>
+    
+    <!-- DNS 预解析 -->
+    <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    
+    <!-- 结构化数据 -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "name": "我的博客",
+        "description": "一个功能完整、性能优异的轻量级Markdown博客系统",
+        "url": "",
+        "author": {
+            "@type": "Person",
+            "name": "博客系统开发者"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "唱片公司"
+        }
+    }
+    </script>
+</head>
+<body>
+    <!-- 页面头部 -->
+    <header class="site-header">
+        <nav class="main-navigation">
+            <div class="nav-container">
+                <div class="logo">
+                    <a href="index.html" aria-label="返回首页">
+                        <img src="images/logo.png" alt="唱片公司" class="logo-image">
+                        <span class="logo-text">唱片公司</span>
+                    </a>
+                </div>
+                
+                <ul class="nav-menu">
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="about.html">关于我们</a></li>
+                    <li><a href="products.html">产品服务</a></li>
+                    <li><a href="services.html">服务项目</a></li>
+                    <li><a href="contact.html">联系我们</a></li>
+                    <li class="active"><a href="blog.html" aria-current="page">我的博客</a></li>
+                </ul>
+                
+                <div class="nav-toggle" aria-label="切换导航菜单">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- 主要内容 -->
+    <main class="main-content">
+        <!-- 博客系统容器 -->
+        <div id="blog-container">
+            <!-- 博客系统将在这里动态渲染 -->
+        </div>
+    </main>
+
+    <!-- 页面底部 -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>关于我们</h3>
+                <p>专业的音乐制作和唱片发行公司，致力于为音乐人提供全方位的支持和服务。</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>快速链接</h3>
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="about.html">关于我们</a></li>
+                    <li><a href="products.html">产品服务</a></li>
+                    <li><a href="services.html">服务项目</a></li>
+                    <li><a href="contact.html">联系我们</a></li>
+                    <li><a href="blog.html">我的博客</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>联系方式</h3>
+                <p>📧 info@recordcompany.com</p>
+                <p>📞 +86 123 4567 8900</p>
+                <p>📍 北京市朝阳区音乐大道123号</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>关注我们</h3>
+                <div class="social-links">
+                    <a href="#" class="social-link" aria-label="音乐平台">🎵 音乐平台</a>
+                    <a href="#" class="social-link" aria-label="微信">📱 微信</a>
+                    <a href="#" class="social-link" aria-label="微博">🐦 微博</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 唱片公司. 保留所有权利. | 
+               <a href="privacy-policy.html">隐私政策</a> | 
+               <a href="terms-of-use.html">使用条款</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- 返回顶部按钮 -->
+    <button id="back-to-top" class="back-to-top" title="返回顶部" aria-label="返回顶部">
+        ↑
+    </button>
+
+    <!-- 加载指示器 -->
+    <div id="loading-indicator" class="loading-indicator">
+        <div class="loading-spinner"></div>
+        <p>正在加载博客系统...</p>
+    </div>
+
+    <!-- JavaScript文件 -->
+    <script src="js/blog-system.js"></script>
+    
+    <!-- 页面特定的JavaScript -->
+    <script>
+        // 页面加载完成后的初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 博客页面加载完成');
+            
+            // 初始化博客系统
+            let blogSystem;
+            try {
+                if (typeof OptimizedBlogSystem !== 'undefined') {
+                    blogSystem = new OptimizedBlogSystem();
+                    window.blogSystem = blogSystem;
+                    console.log('✅ 博客系统初始化成功');
+                } else {
+                    console.error('❌ OptimizedBlogSystem 类未定义');
+                    throw new Error('博客系统类未找到');
+                }
+            } catch (error) {
+                console.error('❌ 博客系统初始化失败:', error);
+                // 显示错误信息
+                const blogContainer = document.getElementById('blog-container');
+                if (blogContainer) {
+                    blogContainer.innerHTML = `
+                        <div class="error-message">
+                            <h3>❌ 博客系统初始化失败</h3>
+                            <p>很抱歉，博客系统遇到了一个错误。请刷新页面重试。</p>
+                            <button onclick="location.reload()" class="btn-primary">刷新页面</button>
+                        </div>
+                    `;
+                }
+                return;
+            }
+            
+            // 隐藏加载指示器
+            const loadingIndicator = document.getElementById('loading-indicator');
+            if (loadingIndicator) {
+                setTimeout(() => {
+                    loadingIndicator.style.opacity = '0';
+                    setTimeout(() => {
+                        loadingIndicator.style.display = 'none';
+                    }, 300);
+                }, 1000);
+            }
+            
+            // 导航菜单切换
+            const navToggle = document.querySelector('.nav-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            if (navToggle && navMenu) {
+                navToggle.addEventListener('click', function() {
+                    navMenu.classList.toggle('active');
+                    navToggle.classList.toggle('active');
+                    
+                    // 更新aria-expanded属性
+                    const isExpanded = navMenu.classList.contains('active');
+                    navToggle.setAttribute('aria-expanded', isExpanded);
+                });
+            }
+            
+            // 返回顶部功能
+            const backToTopBtn = document.getElementById('back-to-top');
+            if (backToTopBtn) {
+                window.addEventListener('scroll', function() {
+                    if (window.pageYOffset > 300) {
+                        backToTopBtn.style.display = 'block';
+                        backToTopBtn.setAttribute('aria-hidden', 'false');
+                    } else {
+                        backToTopBtn.style.display = 'none';
+                        backToTopBtn.setAttribute('aria-hidden', 'true');
+                    }
+                });
+                
+                backToTopBtn.addEventListener('click', function() {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+            
+            // 平滑滚动
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            
+            // 键盘导航支持
+            document.addEventListener('keydown', function(e) {
+                // ESC键关闭导航菜单
+                if (e.key === 'Escape') {
+                    if (navMenu && navMenu.classList.contains('active')) {
+                        navMenu.classList.remove('active');
+                        navToggle.classList.remove('active');
+                        navToggle.setAttribute('aria-expanded', 'false');
+                    }
+                }
+                
+                // Alt + M 打开/关闭导航菜单
+                if (e.altKey && e.key === 'm') {
+                    e.preventDefault();
+                    if (navToggle) {
+                        navToggle.click();
+                    }
+                }
+            });
+            
+            // 处理URL哈希变化
+            window.addEventListener('hashchange', function() {
+                const hash = window.location.hash;
+                if (hash.startsWith('#post/')) {
+                    const filename = hash.replace('#post/', '');
+                    if (window.blogSystem) {
+                        window.blogSystem.showPost(filename);
+                    }
+                }
+            });
+            
+            // 初始处理URL哈希
+            if (window.location.hash.startsWith('#post/')) {
+                const filename = window.location.hash.replace('#post/', '');
+                setTimeout(() => {
+                    if (window.blogSystem) {
+                        window.blogSystem.showPost(filename);
+                    }
+                }, 1000);
+            }
+        });
+        
+        // 页面可见性变化时的处理
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                document.title = '别走呀，快回来！ - 我的博客';
+            } else {
+                document.title = '我的博客 - 轻量级Markdown博客系统';
+            }
+        });
+        
+        // 错误处理
+        window.addEventListener('error', function(e) {
+            console.error('页面错误:', e.error);
+            
+            // 显示用户友好的错误消息
+            const errorMessage = document.createElement('div');
+            errorMessage.className = 'error-message';
+            errorMessage.innerHTML = `
+                <div class="error-content">
+                    <h3>❌ 页面出现错误</h3>
+                    <p>很抱歉，页面遇到了一个错误。请刷新页面重试。</p>
+                    <button onclick="location.reload()" class="btn-primary">刷新页面</button>
+                </div>
+            `;
+            document.body.appendChild(errorMessage);
+        });
+        
+        // 未处理的Promise拒绝
+        window.addEventListener('unhandledrejection', function(e) {
+            console.error('未处理的Promise拒绝:', e.reason);
+        });
+        
+        // 网络状态监控
+        window.addEventListener('online', function() {
+            console.log('网络连接已恢复');
+            if (window.blogSystem) {
+                window.blogSystem.showNotification('网络连接已恢复', 'success');
+            }
+        });
+        
+        window.addEventListener('offline', function() {
+            console.log('网络连接已断开');
+            if (window.blogSystem) {
+                window.blogSystem.showNotification('网络连接已断开，部分功能可能受限', 'warning');
+            }
+        });
+    </script>
+    
+    <!-- 性能监控 -->
+    <script>
+        // 页面性能监控
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                const perfData = performance.getEntriesByType('navigation')[0];
+                if (perfData) {
+                    const metrics = {
+                        'DOM内容加载时间': Math.round(perfData.domContentLoadedEventEnd - perfData.domContentLoadedEventStart) + 'ms',
+                        '页面完全加载时间': Math.round(perfData.loadEventEnd - perfData.loadEventStart) + 'ms',
+                        '总加载时间': Math.round(perfData.loadEventEnd - perfData.navigationStart) + 'ms',
+                        '首次内容绘制': Math.round(perfData.domContentLoadedEventStart - perfData.navigationStart) + 'ms'
+                    };
+                    
+                    console.log('📊 页面性能数据:', metrics);
+                    
+                    // 如果加载时间过长，记录警告
+                    if (metrics['总加载时间'] > 3000) {
+                        console.warn('⚠️ 页面加载时间较长，建议优化');
+                    }
+                }
+                
+                // 监控资源加载
+                const resources = performance.getEntriesByType('resource');
+                const slowResources = resources.filter(resource => resource.duration > 1000);
+                if (slowResources.length > 0) {
+                    console.warn('⚠️ 发现加载缓慢的资源:', slowResources.map(r => r.name));
+                }
+            }, 0);
+        });
+        
+        // 监控用户交互
+        let interactionCount = 0;
+        const interactionEvents = ['click', 'scroll', 'keydown', 'touchstart'];
+        
+        interactionEvents.forEach(eventType => {
+            document.addEventListener(eventType, function() {
+                interactionCount++;
+                if (interactionCount === 1) {
+                    console.log('👆 用户开始与页面交互');
+                }
+            }, { once: true });
+        });
+        
+        // 监控页面可见性
+        let visibilityChangeCount = 0;
+        document.addEventListener('visibilitychange', function() {
+            visibilityChangeCount++;
+            console.log(`👁️ 页面可见性变化 (第${visibilityChangeCount}次):`, document.hidden ? '隐藏' : '显示');
+        });
+    </script>
+    
+    <!-- Service Worker 注册 -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(function(registration) {
+                        console.log('✅ Service Worker 注册成功:', registration.scope);
+                    })
+                    .catch(function(error) {
+                        console.log('⚠️ Service Worker 注册失败:', error);
+                    });
+            });
+        }
+    </script>
+    
+    <!-- 结构化数据更新 -->
+    <script>
+        // 动态更新结构化数据
+        function updateStructuredData() {
+            if (window.blogSystem && window.blogSystem.currentPost) {
+                const post = window.blogSystem.currentPost;
+                const structuredData = {
+                    "@context": "https://schema.org",
+                    "@type": "BlogPosting",
+                    "headline": post.title,
+                    "description": post.content.substring(0, 200) + '...',
+                    "datePublished": post.date,
+                    "author": {
+                        "@type": "Person",
+                        "name": post.metadata.author || "博客系统开发者"
+                    },
+                    "publisher": {
+                        "@type": "Organization",
+                        "name": "唱片公司"
+                    },
+                    "wordCount": post.wordCount,
+                    "timeRequired": "PT" + post.readingTime + "M"
+                };
+                
+                // 更新或创建结构化数据脚本
+                let script = document.querySelector('script[type="application/ld+json"]');
+                if (script) {
+                    script.textContent = JSON.stringify(structuredData);
+                } else {
+                    script = document.createElement('script');
+                    script.type = 'application/ld+json';
+                    script.textContent = JSON.stringify(structuredData);
+                    document.head.appendChild(script);
+                }
+            }
+        }
+        
+        // 监听博客系统状态变化
+        const originalShowPost = window.blogSystem?.showPost;
+        if (originalShowPost) {
+            window.blogSystem.showPost = function(filename) {
+                originalShowPost.call(this, filename);
+                setTimeout(updateStructuredData, 100);
+            };
+        }
+    </script>
+</body>
+</html>

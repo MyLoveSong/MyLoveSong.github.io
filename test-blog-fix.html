@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>音乐盛宴网站 - 博客修复测试页面</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        .test-section {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+        .success { color: #4ade80; }
+        .error { color: #f87171; }
+        .warning { color: #fbbf24; }
+        .info { color: #60a5fa; }
+        button {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #2563eb;
+        }
+        #console-output {
+            height: 300px;
+            overflow-y: auto;
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        .page-info {
+            background: rgba(255,255,255,0.2);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎵 音乐盛宴网站 - 博客修复测试页面</h1>
+    
+    <div class="test-section">
+        <h2>✅ 问题修复说明</h2>
+        <p><strong>问题描述：</strong>每个网页都显示博客内容，包括主页、关于页面等</p>
+        <p><strong>修复方案：</strong>博客系统现在只在博客页面初始化，其他页面不会显示博客界面</p>
+    </div>
+    
+    <div class="test-section">
+        <h2>📄 当前页面信息</h2>
+        <div class="page-info">
+            <p><strong>页面标题：</strong> <span id="page-title"></span></p>
+            <p><strong>页面路径：</strong> <span id="page-path"></span></p>
+            <p><strong>是否博客页面：</strong> <span id="is-blog-page"></span></p>
+            <p><strong>博客系统状态：</strong> <span id="blog-system-status"></span></p>
+        </div>
+    </div>
+    
+    <div class="test-section">
+        <h2>🧪 功能测试</h2>
+        <button onclick="testBlogSystem()">测试博客系统</button>
+        <button onclick="checkPageType()">检查页面类型</button>
+        <button onclick="clearConsole()">清空控制台</button>
+    </div>
+    
+    <div class="test-section">
+        <h2>📊 控制台输出</h2>
+        <div id="console-output"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>🔧 技术说明</h2>
+        <p>修复内容：</p>
+        <ul>
+            <li>添加了 <code>isBlogPage()</code> 方法来检测当前页面类型</li>
+            <li>博客系统只在博客页面初始化，避免在其他页面显示</li>
+            <li>通过URL路径、页面标题、meta标签等方式识别博客页面</li>
+            <li>主页、关于页面、联系页面等不会显示博客内容</li>
+        </ul>
+    </div>
+
+    <script>
+        // 重写console.log来捕获输出
+        const originalLog = console.log;
+        const originalWarn = console.warn;
+        const originalError = console.error;
+        
+        function addToConsole(type, message) {
+            const output = document.getElementById('console-output');
+            const timestamp = new Date().toLocaleTimeString();
+            const div = document.createElement('div');
+            div.style.color = type === 'error' ? '#f87171' : type === 'warn' ? '#fbbf24' : '#60a5fa';
+            div.innerHTML = `[${timestamp}] ${type.toUpperCase()}: ${message}`;
+            output.appendChild(div);
+            output.scrollTop = output.scrollHeight;
+        }
+        
+        console.log = function(...args) {
+            originalLog.apply(console, args);
+            addToConsole('log', args.join(' '));
+        };
+        
+        console.warn = function(...args) {
+            originalWarn.apply(console, args);
+            addToConsole('warn', args.join(' '));
+        };
+        
+        console.error = function(...args) {
+            originalError.apply(console, args);
+            addToConsole('error', args.join(' '));
+        };
+        
+        // 检测当前页面是否是博客页面
+        function isBlogPage() {
+            // 检查URL路径
+            const path = window.location.pathname;
+            const isBlogPath = path.includes('blog') || path.includes('posts') || path.endsWith('.html') && path.includes('blog');
+            
+            // 检查页面标题
+            const title = document.title.toLowerCase();
+            const isBlogTitle = title.includes('博客') || title.includes('blog');
+            
+            // 检查页面内容
+            const hasBlogContent = document.querySelector('.blog-section, .blog-content, #blog, .blog, [data-section="blog"]');
+            
+            // 检查是否有博客相关的meta标签
+            const hasBlogMeta = document.querySelector('meta[name="page-type"][content="blog"]') || 
+                               document.querySelector('meta[property="og:type"][content="article"]');
+            
+            // 如果是博客页面，返回true
+            if (isBlogPath || isBlogTitle || hasBlogContent || hasBlogMeta) {
+                return true;
+            }
+            
+            // 检查当前页面是否是主页（index.html）
+            if (path.endsWith('index.html') || path.endsWith('/') || path.endsWith('\\')) {
+                return false; // 主页不显示博客界面
+            }
+            
+            // 检查是否是其他特定页面
+            const otherPages = ['about', 'contact', 'products', 'services', 'privacy', 'terms'];
+            const isOtherPage = otherPages.some(page => path.includes(page));
+            
+            if (isOtherPage) {
+                return false; // 其他页面不显示博客界面
+            }
+            
+            // 默认情况下，如果不是明确标识的博客页面，则不显示博客界面
+            return false;
+        }
+        
+        // 测试博客系统
+        function testBlogSystem() {
+            console.log('🧪 测试博客系统...');
+            
+            if (typeof window.OptimizedBlogSystem !== 'undefined') {
+                console.log('✅ OptimizedBlogSystem 类可用');
+                
+                try {
+                    // 尝试创建博客系统实例
+                    const blogSystem = new window.OptimizedBlogSystem();
+                    console.log('✅ 博客系统实例创建成功');
+                    console.log('博客系统实例:', blogSystem);
+                    
+                    // 检查实例方法
+                    if (blogSystem.loadPosts) {
+                        console.log('✅ loadPosts 方法可用');
+                    }
+                    if (blogSystem.renderBlogInterface) {
+                        console.log('✅ renderBlogInterface 方法可用');
+                    }
+                    
+                    // 检查是否渲染了博客界面
+                    const blogContainer = document.getElementById('blog-container');
+                    if (blogContainer) {
+                        console.log('✅ 博客容器已存在');
+                        console.log('博客容器内容:', blogContainer.innerHTML.substring(0, 100) + '...');
+                    } else {
+                        console.log('📝 博客容器不存在（这是正常的，因为当前页面不是博客页面）');
+                    }
+                    
+                } catch (error) {
+                    console.error('❌ 博客系统实例创建失败:', error);
+                }
+                
+            } else {
+                console.error('❌ OptimizedBlogSystem 类不可用');
+            }
+        }
+        
+        // 检查页面类型
+        function checkPageType() {
+            console.log('🔍 检查页面类型...');
+            
+            const path = window.location.pathname;
+            const title = document.title;
+            const isBlog = isBlogPage();
+            
+            console.log('页面路径:', path);
+            console.log('页面标题:', title);
+            console.log('是否博客页面:', isBlog);
+            
+            // 检查meta标签
+            const blogMeta = document.querySelector('meta[name="page-type"][content="blog"]');
+            console.log('博客meta标签:', blogMeta ? '存在' : '不存在');
+            
+            // 检查页面内容
+            const blogContent = document.querySelector('.blog-section, .blog-content, #blog, .blog, [data-section="blog"]');
+            console.log('博客内容元素:', blogContent ? '存在' : '不存在');
+            
+            // 检查博客容器
+            const blogContainer = document.getElementById('blog-container');
+            console.log('博客容器:', blogContainer ? '存在' : '不存在');
+            
+            if (blogContainer) {
+                console.log('博客容器内容长度:', blogContainer.innerHTML.length);
+            }
+        }
+        
+        // 清空控制台
+        function clearConsole() {
+            document.getElementById('console-output').innerHTML = '';
+        }
+        
+        // 页面加载完成后的检查
+        window.addEventListener('load', () => {
+            console.log('🎵 博客修复测试页面加载完成');
+            console.log('📝 当前环境:', window.location.protocol);
+            
+            // 更新页面信息
+            document.getElementById('page-title').textContent = document.title;
+            document.getElementById('page-path').textContent = window.location.pathname;
+            document.getElementById('is-blog-page').textContent = isBlogPage() ? '是' : '否';
+            document.getElementById('blog-system-status').textContent = typeof window.OptimizedBlogSystem !== 'undefined' ? '已加载' : '未加载';
+            
+            console.log('🌐 建议：使用测试按钮来验证修复效果');
+            
+            // 自动检查页面类型
+            setTimeout(checkPageType, 1000);
+        });
+        
+        // 捕获全局错误
+        window.addEventListener('error', (event) => {
+            console.error('❌ 全局错误:', event.error);
+        });
+        
+        window.addEventListener('unhandledrejection', (event) => {
+            console.error('❌ 未处理的Promise拒绝:', event.reason);
+        });
+    </script>
+</body>
+</html>

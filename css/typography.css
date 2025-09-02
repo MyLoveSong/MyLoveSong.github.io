@@ -1,0 +1,355 @@
+/* =================================
+   字体和文字样式
+   ================================= */
+
+/* 标题层级 */
+h1 {
+    font-family: var(--font-display);
+    font-size: var(--font-size-hero);
+    font-weight: 800;
+    line-height: var(--line-height-heading);
+    margin-bottom: var(--spacing-md);
+    color: var(--text-primary);
+    position: relative;
+}
+
+h1::before {
+    content: var(--music-clef);
+    position: absolute;
+    left: -40px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    color: var(--accent-gold);
+    opacity: 0.8;
+    animation: musicBlink 3s ease-in-out infinite;
+}
+
+h2 {
+    font-family: var(--font-display);
+    font-size: var(--font-size-xxl);
+    font-weight: 700;
+    line-height: var(--line-height-heading);
+    margin-bottom: var(--spacing-md);
+    color: var(--text-primary);
+    position: relative;
+}
+
+h2::after {
+    content: var(--music-note);
+    position: absolute;
+    right: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    color: var(--accent-gold);
+    opacity: 0.6;
+    animation: musicBlink 3s ease-in-out infinite 1s;
+}
+
+h3 {
+    font-family: var(--font-display);
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    line-height: var(--line-height-heading);
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-primary);
+    position: relative;
+}
+
+h3::before {
+    content: var(--music-beat);
+    position: absolute;
+    left: -25px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    color: var(--accent-gold);
+    opacity: 0.5;
+    animation: musicBlink 3s ease-in-out infinite 2s;
+}
+
+h4 {
+    font-family: var(--font-family);
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    line-height: var(--line-height-heading);
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-primary);
+}
+
+h5 {
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    font-weight: 500;
+    line-height: var(--line-height-heading);
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-primary);
+}
+
+h6 {
+    font-family: var(--font-family);
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    line-height: var(--line-height-heading);
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-primary);
+}
+
+/* 段落样式 */
+p {
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+    margin-bottom: var(--spacing-md);
+    color: var(--text-secondary);
+}
+
+/* 强调文本 */
+strong, b {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+em, i {
+    font-style: italic;
+    color: var(--text-secondary);
+}
+
+/* 小文本 */
+small {
+    font-size: var(--font-size-sm);
+    color: var(--text-light);
+}
+
+/* 删除线文本 */
+del, s {
+    text-decoration: line-through;
+    color: var(--text-light);
+}
+
+/* 下划线文本 */
+ins, u {
+    text-decoration: underline;
+    color: var(--primary-light);
+}
+
+/* 标记文本 */
+mark {
+    background-color: var(--accent-gold);
+    color: var(--text-primary);
+    padding: 2px 4px;
+    border-radius: var(--radius-sm);
+}
+
+/* 代码文本 */
+code {
+    font-family: 'Courier New', 'Monaco', 'Consolas', monospace;
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    padding: 2px 6px;
+    border-radius: var(--radius-sm);
+    font-size: 0.9em;
+    border: 1px solid var(--border-light);
+}
+
+/* 预格式化文本 */
+pre {
+    font-family: 'Courier New', 'Monaco', 'Consolas', monospace;
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    overflow-x: auto;
+    margin: var(--spacing-md) 0;
+    border: 1px solid var(--border-light);
+    line-height: 1.5;
+}
+
+pre code {
+    background: none;
+    padding: 0;
+    border: none;
+    color: inherit;
+}
+
+/* 引用样式 */
+blockquote {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: var(--font-size-lg);
+    line-height: 1.6;
+    margin: var(--spacing-lg) 0;
+    padding: var(--spacing-lg);
+    background: var(--bg-secondary);
+    border-left: 4px solid var(--primary-light);
+    border-radius: var(--radius-md);
+    position: relative;
+}
+
+blockquote::before {
+    content: '"';
+    font-size: 4rem;
+    color: var(--accent-gold);
+    position: absolute;
+    top: -10px;
+    left: var(--spacing-md);
+    opacity: 0.3;
+}
+
+blockquote cite {
+    display: block;
+    font-size: var(--font-size-sm);
+    color: var(--text-light);
+    margin-top: var(--spacing-md);
+    font-style: normal;
+}
+
+/* 列表样式 */
+ul, ol {
+    margin-bottom: var(--spacing-md);
+    padding-left: var(--spacing-lg);
+}
+
+li {
+    margin-bottom: var(--spacing-sm);
+    line-height: var(--line-height-base);
+    color: var(--text-secondary);
+}
+
+ul li {
+    list-style: none;
+    position: relative;
+}
+
+ul li::before {
+    content: var(--music-note);
+    position: absolute;
+    left: -20px;
+    color: var(--accent-gold);
+    font-size: 0.8em;
+    opacity: 0.6;
+}
+
+ol li {
+    list-style: decimal;
+    padding-left: var(--spacing-sm);
+}
+
+/* 定义列表 */
+dl {
+    margin-bottom: var(--spacing-md);
+}
+
+dt {
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-xs);
+}
+
+dd {
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-secondary);
+    padding-left: var(--spacing-md);
+}
+
+/* 水平分割线 */
+hr {
+    border: none;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+    margin: var(--spacing-xl) 0;
+    border-radius: 1px;
+}
+
+/* 音乐符号动画 */
+@keyframes musicBlink {
+    0%, 100% { opacity: 0.3; transform: translateY(-50%) scale(1); }
+    50% { opacity: 1; transform: translateY(-50%) scale(1.1); }
+}
+
+/* 深色主题文字调整 */
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] h4,
+[data-theme="dark"] h5,
+[data-theme="dark"] h6 {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] p,
+[data-theme="dark"] li,
+[data-theme="dark"] dd {
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] code,
+[data-theme="dark"] pre {
+    background-color: var(--bg-secondary);
+    border-color: var(--border-light);
+}
+
+[data-theme="dark"] blockquote {
+    background: var(--bg-secondary);
+    border-left-color: var(--primary-light);
+}
+
+/* 响应式文字调整 */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+    
+    h3 {
+        font-size: 1.25rem;
+    }
+    
+    h1::before {
+        left: -30px;
+        font-size: 1.5rem;
+    }
+    
+    h2::after {
+        right: -25px;
+        font-size: 1.2rem;
+    }
+    
+    h3::before {
+        left: -20px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.75rem;
+    }
+    
+    h2 {
+        font-size: 1.25rem;
+    }
+    
+    h3 {
+        font-size: 1.1rem;
+    }
+    
+    h1::before {
+        left: -25px;
+        font-size: 1.2rem;
+    }
+    
+    h2::after {
+        right: -20px;
+        font-size: 1rem;
+    }
+    
+    h3::before {
+        left: -15px;
+        font-size: 0.8rem;
+    }
+}

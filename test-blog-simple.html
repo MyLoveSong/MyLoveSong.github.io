@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>博客系统测试页面</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        .success { color: #10b981; }
+        .error { color: #ef4444; }
+        .warning { color: #f59e0b; }
+        button {
+            background: #f4d03f;
+            color: #333;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #f7dc6f;
+        }
+        #blog-container {
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        .loading {
+            text-align: center;
+            padding: 20px;
+        }
+        .spinner {
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid #f4d03f;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 博客系统测试页面</h1>
+        
+        <div class="test-section">
+            <h3>测试步骤</h3>
+            <ol>
+                <li>点击"初始化博客系统"按钮</li>
+                <li>观察控制台输出</li>
+                <li>检查博客界面是否正常显示</li>
+                <li>测试搜索、主题切换等功能</li>
+            </ol>
+        </div>
+        
+        <div class="test-section">
+            <h3>操作按钮</h3>
+            <button onclick="initBlogSystem()">🚀 初始化博客系统</button>
+            <button onclick="testBlogFunctions()">🧪 测试博客功能</button>
+            <button onclick="clearBlogContainer()">🗑️ 清空博客容器</button>
+            <button onclick="checkBlogSystem()">🔍 检查博客系统状态</button>
+        </div>
+        
+        <div class="test-section">
+            <h3>测试结果</h3>
+            <div id="test-results">
+                <p>等待测试...</p>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h3>博客系统容器</h3>
+            <div id="blog-container">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>博客系统将在这里显示</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 加载博客系统 -->
+    <script src="js/blog-system.js"></script>
+    
+    <script>
+        let blogSystem = null;
+        
+        // 初始化博客系统
+        function initBlogSystem() {
+            const results = document.getElementById('test-results');
+            results.innerHTML = '<p class="loading">正在初始化博客系统...</p>';
+            
+            try {
+                if (typeof OptimizedBlogSystem !== 'undefined') {
+                    console.log('✅ OptimizedBlogSystem 类可用');
+                    
+                    blogSystem = new OptimizedBlogSystem();
+                    window.blogSystem = blogSystem;
+                    
+                    results.innerHTML = '<p class="success">✅ 博客系统初始化成功！</p>';
+                    console.log('✅ 博客系统实例创建成功:', blogSystem);
+                    
+                    // 等待一段时间后检查博客容器
+                    setTimeout(() => {
+                        checkBlogContainer();
+                    }, 2000);
+                    
+                } else {
+                    results.innerHTML = '<p class="error">❌ OptimizedBlogSystem 类未定义</p>';
+                    console.error('❌ OptimizedBlogSystem 类未定义');
+                }
+            } catch (error) {
+                results.innerHTML = `<p class="error">❌ 博客系统初始化失败: ${error.message}</p>`;
+                console.error('❌ 博客系统初始化失败:', error);
+            }
+        }
+        
+        // 测试博客功能
+        function testBlogFunctions() {
+            const results = document.getElementById('test-results');
+            
+            if (!blogSystem) {
+                results.innerHTML = '<p class="warning">⚠️ 请先初始化博客系统</p>';
+                return;
+            }
+            
+            let testResults = '<h4>功能测试结果:</h4>';
+            
+            // 测试基本属性
+            testResults += `<p>✅ 文章数量: ${blogSystem.posts ? blogSystem.posts.length : '未定义'}</p>`;
+            testResults += `<p>✅ 当前主题: ${blogSystem.theme || '未定义'}</p>`;
+            testResults += `<p>✅ Markdown解析器: ${blogSystem.markdownParser ? '已加载' : '未加载'}</p>`;
+            
+            // 测试方法
+            testResults += `<p>✅ renderBlogInterface: ${typeof blogSystem.renderBlogInterface === 'function' ? '可用' : '不可用'}</p>`;
+            testResults += `<p>✅ searchPosts: ${typeof blogSystem.searchPosts === 'function' ? '可用' : '不可用'}</p>`;
+            testResults += `<p>✅ toggleTheme: ${typeof blogSystem.toggleTheme === 'function' ? '可用' : '不可用'}</p>`;
+            
+            results.innerHTML = testResults;
+        }
+        
+        // 清空博客容器
+        function clearBlogContainer() {
+            const container = document.getElementById('blog-container');
+            container.innerHTML = '<div class="loading"><div class="spinner"></div><p>博客系统已清空</p></div>';
+        }
+        
+        // 检查博客系统状态
+        function checkBlogSystem() {
+            const results = document.getElementById('test-results');
+            
+            if (!blogSystem) {
+                results.innerHTML = '<p class="warning">⚠️ 博客系统未初始化</p>';
+                return;
+            }
+            
+            let status = '<h4>博客系统状态:</h4>';
+            status += `<p>✅ 实例类型: ${blogSystem.constructor.name}</p>`;
+            status += `<p>✅ 文章数量: ${blogSystem.posts ? blogSystem.posts.length : '未定义'}</p>`;
+            status += `<p>✅ 当前主题: ${blogSystem.theme || '未定义'}</p>`;
+            status += `<p>✅ 搜索历史: ${blogSystem.searchHistory ? blogSystem.searchHistory.length : '未定义'}</p>`;
+            
+            results.innerHTML = status;
+        }
+        
+        // 检查博客容器
+        function checkBlogContainer() {
+            const container = document.getElementById('blog-container');
+            const results = document.getElementById('test-results');
+            
+            if (container.innerHTML.includes('博客系统将在这里显示') || 
+                container.innerHTML.includes('博客系统已清空')) {
+                results.innerHTML += '<p class="warning">⚠️ 博客界面可能未正确渲染</p>';
+            } else {
+                results.innerHTML += '<p class="success">✅ 博客界面已渲染</p>';
+            }
+        }
+        
+        // 页面加载完成后的初始化检查
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 博客测试页面加载完成');
+            
+            const results = document.getElementById('test-results');
+            results.innerHTML = '<p class="success">✅ 页面加载完成，可以开始测试</p>';
+            
+            // 检查OptimizedBlogSystem类是否可用
+            if (typeof OptimizedBlogSystem !== 'undefined') {
+                results.innerHTML += '<p class="success">✅ OptimizedBlogSystem 类已加载</p>';
+            } else {
+                results.innerHTML += '<p class="error">❌ OptimizedBlogSystem 类未加载</p>';
+            }
+        });
+        
+        // 错误处理
+        window.addEventListener('error', function(e) {
+            console.error('页面错误:', e.error);
+            const results = document.getElementById('test-results');
+            results.innerHTML += `<p class="error">❌ 页面错误: ${e.error.message}</p>`;
+        });
+        
+        // 未处理的Promise拒绝
+        window.addEventListener('unhandledrejection', function(e) {
+            console.error('未处理的Promise拒绝:', e.reason);
+            const results = document.getElementById('test-results');
+            results.innerHTML += `<p class="error">❌ Promise拒绝: ${e.reason}</p>`;
+        });
+    </script>
+</body>
+</html>

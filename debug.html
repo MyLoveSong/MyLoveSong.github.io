@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>音乐盛宴网站 - 调试页面</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        .debug-section {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+        .success { color: #4ade80; }
+        .error { color: #f87171; }
+        .warning { color: #fbbf24; }
+        .info { color: #60a5fa; }
+        button {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #2563eb;
+        }
+        pre {
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎵 音乐盛宴网站 - 调试页面</h1>
+    
+    <div class="debug-section">
+        <h2>🔍 模块加载状态检查</h2>
+        <button onclick="checkModules()">检查模块状态</button>
+        <button onclick="testGitHubAPI()">测试GitHub API</button>
+        <button onclick="testThemeToggle()">测试主题切换</button>
+        <button onclick="clearConsole()">清空控制台</button>
+        <div id="module-status"></div>
+    </div>
+    
+    <div class="debug-section">
+        <h2>📊 控制台输出</h2>
+        <div id="console-output" style="height: 300px; overflow-y: auto; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 5px; font-family: monospace;"></div>
+    </div>
+    
+    <div class="debug-section">
+        <h2>🔧 手动初始化</h2>
+        <button onclick="manualInit()">手动初始化所有模块</button>
+        <button onclick="forceLoad()">强制加载脚本</button>
+        <div id="init-status"></div>
+    </div>
+
+    <script>
+        // 重写console.log来捕获输出
+        const originalLog = console.log;
+        const originalWarn = console.warn;
+        const originalError = console.error;
+        
+        function addToConsole(type, message) {
+            const output = document.getElementById('console-output');
+            const timestamp = new Date().toLocaleTimeString();
+            const div = document.createElement('div');
+            div.style.color = type === 'error' ? '#f87171' : type === 'warn' ? '#fbbf24' : '#60a5fa';
+            div.innerHTML = `[${timestamp}] ${type.toUpperCase()}: ${message}`;
+            output.appendChild(div);
+            output.scrollTop = output.scrollHeight;
+        }
+        
+        console.log = function(...args) {
+            originalLog.apply(console, args);
+            addToConsole('log', args.join(' '));
+        };
+        
+        console.warn = function(...args) {
+            originalWarn.apply(console, args);
+            addToConsole('warn', args.join(' '));
+        };
+        
+        console.error = function(...args) {
+            originalError.apply(console, args);
+            addToConsole('error', args.join(' '));
+        };
+        
+        // 检查模块状态
+        function checkModules() {
+            const status = document.getElementById('module-status');
+            const modules = [
+                'ProjectManager',
+                'SkillVisualizer', 
+                'TimelineManager',
+                'OptimizedBlogSystem',
+                'MapManager',
+                'ThemeManager',
+                'UIEffectsManager',
+                'MusicWebsiteCore'
+            ];
+            
+            let html = '<h3>模块状态:</h3>';
+            modules.forEach(moduleName => {
+                const isDefined = typeof window[moduleName] !== 'undefined';
+                const color = isDefined ? 'success' : 'error';
+                const icon = isDefined ? '✅' : '❌';
+                html += `<p class="${color}">${icon} ${moduleName}: ${isDefined ? '已加载' : '未加载'}</p>`;
+            });
+            
+            // 检查全局变量
+            html += '<h3>全局变量状态:</h3>';
+            const globals = [
+                'projectManager',
+                'skillVisualizer',
+                'timelineManager', 
+                'blogSystem',
+                'mapManager',
+                'themeManager',
+                'uiEffectsManager',
+                'musicWebsiteCore'
+            ];
+            
+            globals.forEach(globalName => {
+                const isDefined = typeof window[globalName] !== 'undefined';
+                const color = isDefined ? 'success' : 'warning';
+                const icon = isDefined ? '✅' : '⚠️';
+                html += `<p class="${color}">${icon} ${globalName}: ${isDefined ? '已定义' : '未定义'}</p>`;
+            });
+            
+            status.innerHTML = html;
+        }
+        
+        // 测试GitHub API
+        function testGitHubAPI() {
+            console.log('🧪 测试GitHub API...');
+            if (typeof window.projectManager !== 'undefined') {
+                console.log('✅ projectManager 已加载');
+                if (window.projectManager.fetchProjects) {
+                    console.log('✅ fetchProjects 方法可用');
+                    window.projectManager.fetchProjects().then(() => {
+                        console.log('✅ GitHub API 测试成功');
+                    }).catch(error => {
+                        console.error('❌ GitHub API 测试失败:', error);
+                    });
+                } else {
+                    console.warn('⚠️ fetchProjects 方法不可用');
+                }
+            } else {
+                console.error('❌ projectManager 未加载');
+            }
+        }
+        
+        // 测试主题切换
+        function testThemeToggle() {
+            console.log('🧪 测试主题切换...');
+            if (typeof window.themeManager !== 'undefined') {
+                console.log('✅ themeManager 已加载');
+                if (window.themeManager.toggleTheme) {
+                    console.log('✅ toggleTheme 方法可用');
+                    window.themeManager.toggleTheme();
+                    console.log('✅ 主题切换测试成功');
+                } else {
+                    console.warn('⚠️ toggleTheme 方法不可用');
+                }
+            } else {
+                console.error('❌ themeManager 未加载');
+            }
+        }
+        
+        // 清空控制台
+        function clearConsole() {
+            document.getElementById('console-output').innerHTML = '';
+        }
+        
+        // 手动初始化
+        function manualInit() {
+            console.log('🔄 手动初始化所有模块...');
+            const status = document.getElementById('init-status');
+            
+            try {
+                // 尝试加载所有模块
+                const modules = [
+                    'js/project-manager.js',
+                    'js/skill-visualizer.js',
+                    'js/timeline-manager.js',
+                    'js/blog-system.js',
+                    'js/map-manager.js',
+                    'js/theme-manager.js',
+                    'js/ui-effects.js',
+                    'js/music-website-core.js'
+                ];
+                
+                let loadedCount = 0;
+                modules.forEach(src => {
+                    const script = document.createElement('script');
+                    script.src = src;
+                    script.onload = () => {
+                        loadedCount++;
+                        console.log(`✅ 加载成功: ${src}`);
+                        if (loadedCount === modules.length) {
+                            console.log('🎉 所有模块加载完成，开始初始化...');
+                            // 延迟加载主脚本
+                            setTimeout(() => {
+                                const mainScript = document.createElement('script');
+                                mainScript.src = 'script-new.js';
+                                mainScript.onload = () => {
+                                    console.log('✅ 主脚本加载完成');
+                                    status.innerHTML = '<p class="success">✅ 所有模块初始化完成！</p>';
+                                };
+                                mainScript.onerror = (error) => {
+                                    console.error('❌ 主脚本加载失败:', error);
+                                    status.innerHTML = '<p class="error">❌ 主脚本加载失败</p>';
+                                };
+                                document.head.appendChild(mainScript);
+                            }, 1000);
+                        }
+                    };
+                    script.onerror = (error) => {
+                        console.error(`❌ 加载失败: ${src}`, error);
+                    };
+                    document.head.appendChild(script);
+                });
+                
+            } catch (error) {
+                console.error('❌ 手动初始化失败:', error);
+                status.innerHTML = '<p class="error">❌ 手动初始化失败</p>';
+            }
+        }
+        
+        // 强制加载脚本
+        function forceLoad() {
+            console.log('🚀 强制加载脚本...');
+            const status = document.getElementById('init-status');
+            
+            // 检查是否已经有脚本标签
+            const existingScripts = document.querySelectorAll('script[src*="js/"]');
+            if (existingScripts.length > 0) {
+                console.log(`📝 发现 ${existingScripts.length} 个已加载的脚本`);
+                status.innerHTML = '<p class="info">📝 脚本已加载，请检查控制台输出</p>';
+                return;
+            }
+            
+            // 强制重新加载
+            manualInit();
+        }
+        
+        // 页面加载完成后的检查
+        window.addEventListener('load', () => {
+            console.log('🎵 调试页面加载完成');
+            console.log('📝 当前环境:', window.location.protocol);
+            console.log('🌐 建议：使用"检查模块状态"按钮来诊断问题');
+            
+            // 自动检查模块状态
+            setTimeout(checkModules, 1000);
+        });
+        
+        // 捕获全局错误
+        window.addEventListener('error', (event) => {
+            console.error('❌ 全局错误:', event.error);
+        });
+        
+        window.addEventListener('unhandledrejection', (event) => {
+            console.error('❌ 未处理的Promise拒绝:', event.reason);
+        });
+    </script>
+</body>
+</html>

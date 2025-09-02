@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>地图修复测试</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .test-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            background: #f9f9f9;
+        }
+        
+        .test-section h3 {
+            margin-top: 0;
+            color: #555;
+        }
+        
+        #map {
+            width: 100%;
+            height: 500px;
+            border-radius: 10px;
+            border: 2px solid #ddd;
+            background: #f0f0f0;
+        }
+        
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .status.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        
+        .controls {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .log {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 15px;
+            max-height: 200px;
+            overflow-y: auto;
+            font-family: monospace;
+            font-size: 12px;
+        }
+    </style>
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <!-- Leaflet MarkerCluster CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+    
+    <!-- Leaflet MarkerCluster JS -->
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>🗺️ 地图修复测试页面</h1>
+        
+        <div class="test-section">
+            <h3>📊 测试状态</h3>
+            <div id="status-container">
+                <div class="status info">🔄 正在初始化测试...</div>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h3>🎮 测试控制</h3>
+            <div class="controls">
+                <button onclick="testMapInit()">🧪 测试地图初始化</button>
+                <button onclick="testMapControls()">🔧 测试地图控件</button>
+                <button onclick="testMapInteractions()">🖱️ 测试地图交互</button>
+                <button onclick="clearLog()">🗑️ 清空日志</button>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h3>🗺️ 地图显示</h3>
+            <div id="map"></div>
+        </div>
+        
+        <div class="test-section">
+            <h3>📝 控制台日志</h3>
+            <div id="log" class="log"></div>
+        </div>
+    </div>
+
+    <script>
+        // 重写console.log来捕获日志
+        const originalLog = console.log;
+        const originalWarn = console.warn;
+        const originalError = console.error;
+        
+        function addToLog(message, type = 'log') {
+            const log = document.getElementById('log');
+            const timestamp = new Date().toLocaleTimeString();
+            const logEntry = document.createElement('div');
+            logEntry.style.color = type === 'error' ? '#dc3545' : type === 'warn' ? '#ffc107' : '#28a745';
+            logEntry.textContent = `[${timestamp}] ${message}`;
+            log.appendChild(logEntry);
+            log.scrollTop = log.scrollHeight;
+        }
+        
+        console.log = function(...args) {
+            originalLog.apply(console, args);
+            addToLog(args.join(' '), 'log');
+        };
+        
+        console.warn = function(...args) {
+            originalWarn.apply(console, args);
+            addToLog(args.join(' '), 'warn');
+        };
+        
+        console.error = function(...args) {
+            originalError.apply(console, args);
+            addToLog(args.join(' '), 'error');
+        };
+        
+        // 测试状态管理
+        let mapManager = null;
+        let testResults = {
+            mapInit: false,
+            controls: false,
+            interactions: false
+        };
+        
+        function updateStatus() {
+            const container = document.getElementById('status-container');
+            container.innerHTML = '';
+            
+            if (testResults.mapInit) {
+                container.innerHTML += '<div class="status success">✅ 地图初始化测试通过</div>';
+            } else {
+                container.innerHTML += '<div class="status error">❌ 地图初始化测试失败</div>';
+            }
+            
+            if (testResults.controls) {
+                container.innerHTML += '<div class="status success">✅ 地图控件测试通过</div>';
+            } else {
+                container.innerHTML += '<div class="status error">❌ 地图控件测试失败</div>';
+            }
+            
+            if (testResults.interactions) {
+                container.innerHTML += '<div class="status success">✅ 地图交互测试通过</div>';
+            } else {
+                container.innerHTML += '<div class="status error">❌ 地图交互测试失败</div>';
+            }
+        }
+        
+        // 测试地图初始化
+        async function testMapInit() {
+            try {
+                console.log('🧪 开始测试地图初始化...');
+                
+                // 动态加载地图管理器
+                const script = document.createElement('script');
+                script.src = 'js/map-manager.js';
+                document.head.appendChild(script);
+                
+                await new Promise((resolve, reject) => {
+                    script.onload = resolve;
+                    script.onerror = reject;
+                });
+                
+                // 创建地图管理器实例
+                mapManager = new MapManager();
+                console.log('✅ MapManager类加载成功');
+                
+                // 初始化地图
+                await mapManager.setupTravelMap();
+                console.log('✅ 地图初始化成功');
+                
+                testResults.mapInit = true;
+                updateStatus();
+                
+            } catch (error) {
+                console.error('❌ 地图初始化测试失败:', error);
+                testResults.mapInit = false;
+                updateStatus();
+            }
+        }
+        
+        // 测试地图控件
+        function testMapControls() {
+            try {
+                if (!mapManager || !mapManager.isMapReady()) {
+                    throw new Error('地图未初始化');
+                }
+                
+                console.log('🔧 开始测试地图控件...');
+                
+                // 检查地图实例
+                const mapInstance = mapManager.getMapInstance();
+                if (!mapInstance) {
+                    throw new Error('地图实例不存在');
+                }
+                
+                // 检查缩放控件
+                const zoomControl = document.querySelector('.leaflet-control-zoom');
+                if (zoomControl) {
+                    console.log('✅ 缩放控件存在');
+                } else {
+                    console.warn('⚠️ 缩放控件不存在');
+                }
+                
+                // 检查其他控件
+                const controls = document.querySelectorAll('.leaflet-control-custom');
+                console.log(`✅ 找到 ${controls.length} 个自定义控件`);
+                
+                testResults.controls = true;
+                updateStatus();
+                
+            } catch (error) {
+                console.error('❌ 地图控件测试失败:', error);
+                testResults.controls = false;
+                updateStatus();
+            }
+        }
+        
+        // 测试地图交互
+        function testMapInteractions() {
+            try {
+                if (!mapManager || !mapManager.isMapReady()) {
+                    throw new Error('地图未初始化');
+                }
+                
+                console.log('🖱️ 开始测试地图交互...');
+                
+                // 检查地图事件
+                const mapInstance = mapManager.getMapInstance();
+                
+                // 测试缩放
+                const currentZoom = mapInstance.getZoom();
+                mapInstance.zoomIn();
+                const newZoom = mapInstance.getZoom();
+                
+                if (newZoom > currentZoom) {
+                    console.log('✅ 地图缩放功能正常');
+                } else {
+                    console.warn('⚠️ 地图缩放功能异常');
+                }
+                
+                // 测试移动
+                const center = mapInstance.getCenter();
+                mapInstance.panTo([center.lat + 0.01, center.lng + 0.01]);
+                console.log('✅ 地图移动功能正常');
+                
+                testResults.interactions = true;
+                updateStatus();
+                
+            } catch (error) {
+                console.error('❌ 地图交互测试失败:', error);
+                testResults.interactions = false;
+                updateStatus();
+            }
+        }
+        
+        // 清空日志
+        function clearLog() {
+            document.getElementById('log').innerHTML = '';
+        }
+        
+        // 页面加载完成后自动开始测试
+        window.addEventListener('load', () => {
+            console.log('🚀 页面加载完成，开始自动测试...');
+            setTimeout(testMapInit, 1000);
+        });
+        
+        // 定期更新状态
+        setInterval(updateStatus, 2000);
+    </script>
+</body>
+</html>

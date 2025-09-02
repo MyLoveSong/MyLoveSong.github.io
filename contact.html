@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>音乐合作联系 - 音乐盛宴</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body class="contact-page">
+    <!-- 页头 (header) -->
+    <header>
+        <div class="logo">
+            <h1>🎵 音乐盛宴</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html" aria-label="跳转到首页">首页</a></li>
+                <li><a href="about.html" aria-label="跳转到关于我页面">关于我</a></li>
+                <li><a href="products.html" aria-label="跳转到音乐作品页面">音乐作品</a></li>
+                <li><a href="services.html" aria-label="跳转到音乐表演页面">音乐表演</a></li>
+                <li><a href="contact.html" class="active" aria-label="当前页面：音乐合作">音乐合作</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 主内容区 (main) -->
+    <main role="main" tabindex="-1">
+        <section id="contact">
+            <h2>音乐合作与交流</h2>
+            <p class="section-intro">无论您是音乐爱好者、演奏家还是创作者，我们都欢迎与您进行音乐交流与合作。让我们一起用音乐连接心灵，创造美好的艺术体验。</p>
+            
+            <div class="contact-info">
+                <h3>直接联系</h3>
+                <div class="contact-methods">
+                    <div class="contact-method">
+                        <span class="contact-icon">📧</span>
+                        <div>
+                            <h4>邮箱联系</h4>
+                            <p>xiezeyu5201314@qq.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-method">
+                        <span class="contact-icon">📱</span>
+                        <div>
+                            <h4>微信联系</h4>
+                            <p>GeniusBoy520xxxie</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <form id="contact-form" action="#" method="post" aria-label="联系表单">
+                <label for="name">姓名 <span aria-label="必填项">*</span></label>
+                <input type="text" id="name" name="name" required 
+                       aria-label="请输入您的姓名" 
+                       aria-describedby="name-help" />
+                <div id="name-help" class="form-help">请输入您的真实姓名</div>
+
+                <label for="email">邮箱 <span aria-label="必填项">*</span></label>
+                <input type="email" id="email" name="email" required 
+                       aria-label="请输入您的邮箱地址" 
+                       aria-describedby="email-help" />
+                <div id="email-help" class="form-help">我们将通过此邮箱与您联系</div>
+
+                <label for="phone">电话</label>
+                <input type="text" id="phone" name="phone" 
+                       aria-label="请输入您的电话号码" 
+                       aria-describedby="phone-help" />
+                <div id="phone-help" class="form-help">可选，便于我们快速联系您</div>
+
+                <label for="message">询问内容 <span aria-label="必填项">*</span></label>
+                <textarea id="message" name="message" required 
+                          aria-label="请详细描述您的需求" 
+                          aria-describedby="message-help"></textarea>
+                <div id="message-help" class="form-help">请详细描述您的需求，以便我们为您提供更好的服务</div>
+
+                <button type="submit" class="submit-btn" aria-label="提交联系表单">
+                    <span class="btn-text">提交</span>
+                    <span class="btn-loading" style="display: none;">提交中...</span>
+                </button>
+            </form>
+            
+            <!-- 成功提示框 -->
+            <div id="success-message" class="success-message" style="display: none;">
+                <div class="success-content">
+                    <div class="success-icon">✅</div>
+                    <h3>提交成功！</h3>
+                    <p>感谢您的留言，我们会尽快与您联系。</p>
+                    <button type="button" class="close-btn" onclick="closeSuccessMessage()">关闭</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 (footer) -->
+    <footer>
+                    <p>让音乐连接世界，传递爱与美好。</p>
+        <nav>
+            <ul>
+                <li><a href="terms-of-use.html">使用条款</a></li>
+                <li><a href="contact.html">音乐合作</a></li>
+            </ul>
+        </nav>
+        <div class="social-media">
+            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" aria-label="访问我们的Facebook页面" class="social-link">
+                <span>📘</span>
+                <span class="social-text">Facebook</span>
+            </a>
+            <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer" aria-label="访问我们的Twitter页面" class="social-link">
+                <span>🐦</span>
+                <span class="social-text">Twitter</span>
+            </a>
+            <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="访问我们的LinkedIn页面" class="social-link">
+                <span>💼</span>
+                <span class="social-text">LinkedIn</span>
+            </a>
+        </div>
+    </footer>
+    
+    <!-- JavaScript代码 -->
+    <script>
+        console.log('🚀 联系表单页面加载开始');
+        
+        // 表单提交处理
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('✅ DOM加载完成，开始初始化表单');
+            
+            const contactForm = document.getElementById('contact-form');
+            const submitBtn = contactForm.querySelector('.submit-btn');
+            const btnText = submitBtn.querySelector('.btn-text');
+            const btnLoading = submitBtn.querySelector('.btn-loading');
+            const successMessage = document.getElementById('success-message');
+            
+            console.log('📝 表单元素获取成功:', {
+                form: contactForm,
+                submitBtn: submitBtn,
+                btnText: btnText,
+                btnLoading: btnLoading,
+                successMessage: successMessage
+            });
+            
+            // 表单提交事件
+            contactForm.addEventListener('submit', function(e) {
+                console.log('🎯 表单提交事件触发');
+                e.preventDefault(); // 阻止默认提交行为
+                
+                // 表单验证
+                if (!validateForm()) {
+                    console.log('❌ 表单验证失败');
+                    return;
+                }
+                
+                console.log('✅ 表单验证通过，开始提交');
+                
+                // 显示加载状态
+                showLoadingState();
+                
+                // 模拟表单提交（在实际项目中，这里会发送到服务器）
+                setTimeout(function() {
+                    console.log('📤 模拟提交完成，显示成功消息');
+                    
+                    // 隐藏加载状态
+                    hideLoadingState();
+                    
+                    // 显示成功消息
+                    showSuccessMessage();
+                    
+                    // 重置表单
+                    contactForm.reset();
+                    
+                    // 3秒后自动隐藏成功消息
+                    setTimeout(function() {
+                        hideSuccessMessage();
+                    }, 3000);
+                }, 1500); // 模拟1.5秒的提交时间
+            });
+            
+            // 表单验证
+            function validateForm() {
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const message = document.getElementById('message').value.trim();
+                
+                console.log('🔍 开始表单验证:', { name, email, message });
+                
+                // 清除之前的错误提示
+                clearErrorMessages();
+                
+                let isValid = true;
+                
+                // 验证姓名
+                if (name === '') {
+                    showFieldError('name', '请输入您的姓名');
+                    isValid = false;
+                }
+                
+                // 验证邮箱
+                if (email === '') {
+                    showFieldError('email', '请输入您的邮箱');
+                    isValid = false;
+                } else if (!isValidEmail(email)) {
+                    showFieldError('email', '请输入有效的邮箱地址');
+                    isValid = false;
+                }
+                
+                // 验证询问内容
+                if (message === '') {
+                    showFieldError('message', '请输入您的询问内容');
+                    isValid = false;
+                } else if (message.length < 10) {
+                    showFieldError('message', '询问内容至少需要10个字符');
+                    isValid = false;
+                }
+                
+                console.log('🔍 表单验证结果:', isValid);
+                return isValid;
+            }
+            
+            // 验证邮箱格式
+            function isValidEmail(email) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email);
+            }
+            
+            // 显示字段错误
+            function showFieldError(fieldId, message) {
+                console.log(`❌ 显示字段错误: ${fieldId} - ${message}`);
+                const field = document.getElementById(fieldId);
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'field-error';
+                errorDiv.textContent = message;
+                errorDiv.style.cssText = 'color: #ef4444; font-size: 0.875rem; margin-top: 0.25rem;';
+                
+                field.parentNode.appendChild(errorDiv);
+                field.style.borderColor = '#ef4444';
+            }
+            
+            // 清除错误消息
+            function clearErrorMessages() {
+                const errorMessages = document.querySelectorAll('.field-error');
+                errorMessages.forEach(function(error) {
+                    error.remove();
+                });
+                
+                // 重置边框颜色
+                const inputs = contactForm.querySelectorAll('input, textarea');
+                inputs.forEach(function(input) {
+                    input.style.borderColor = '';
+                });
+            }
+            
+            // 显示加载状态
+            function showLoadingState() {
+                console.log('⏳ 显示加载状态');
+                btnText.style.display = 'none';
+                btnLoading.style.display = 'inline';
+                submitBtn.disabled = true;
+                submitBtn.style.opacity = '0.7';
+                submitBtn.style.cursor = 'not-allowed';
+            }
+            
+            // 隐藏加载状态
+            function hideLoadingState() {
+                console.log('✅ 隐藏加载状态');
+                btnText.style.display = 'inline';
+                btnLoading.style.display = 'none';
+                submitBtn.disabled = false;
+                submitBtn.style.opacity = '1';
+                submitBtn.style.cursor = 'pointer';
+            }
+            
+            // 显示成功消息
+            function showSuccessMessage() {
+                console.log('🎉 显示成功消息');
+                successMessage.style.display = 'flex';
+                successMessage.style.opacity = '0';
+                
+                // 淡入动画
+                setTimeout(function() {
+                    successMessage.style.opacity = '1';
+                }, 10);
+            }
+            
+            // 隐藏成功消息
+            function hideSuccessMessage() {
+                console.log('👋 隐藏成功消息');
+                successMessage.style.opacity = '0';
+                setTimeout(function() {
+                    successMessage.style.display = 'none';
+                }, 300);
+            }
+            
+            console.log('✅ 表单事件绑定完成');
+        });
+        
+        // 关闭成功消息（全局函数）
+        function closeSuccessMessage() {
+            console.log('🔒 关闭成功消息');
+            const successMessage = document.getElementById('success-message');
+            successMessage.style.opacity = '0';
+            setTimeout(function() {
+                successMessage.style.display = 'none';
+            }, 300);
+        }
+        
+        // 实时表单验证
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputs = document.querySelectorAll('#contact-form input, #contact-form textarea');
+            
+            inputs.forEach(function(input) {
+                input.addEventListener('blur', function() {
+                    validateField(this);
+                });
+                
+                input.addEventListener('input', function() {
+                    // 清除错误状态
+                    const error = this.parentNode.querySelector('.field-error');
+                    if (error) {
+                        error.remove();
+                    }
+                    this.style.borderColor = '';
+                });
+            });
+            
+            function validateField(field) {
+                const value = field.value.trim();
+                const fieldId = field.id;
+                
+                // 清除之前的错误
+                const existingError = field.parentNode.querySelector('.field-error');
+                if (existingError) {
+                    existingError.remove();
+                }
+                
+                // 验证逻辑
+                if (fieldId === 'name' && value === '') {
+                    showFieldError(fieldId, '请输入您的姓名');
+                } else if (fieldId === 'email') {
+                    if (value === '') {
+                        showFieldError(fieldId, '请输入您的邮箱');
+                    } else if (!isValidEmail(value)) {
+                        showFieldError(fieldId, '请输入有效的邮箱地址');
+                    }
+                } else if (fieldId === 'message') {
+                    if (value === '') {
+                        showFieldError(fieldId, '请输入您的询问内容');
+                    } else if (value.length < 10) {
+                        showFieldError(fieldId, '询问内容至少需要10个字符');
+                    }
+                }
+            }
+            
+            // 验证邮箱格式
+            function isValidEmail(email) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email);
+            }
+            
+            // 显示字段错误
+            function showFieldError(fieldId, message) {
+                const field = document.getElementById(fieldId);
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'field-error';
+                errorDiv.textContent = message;
+                errorDiv.style.cssText = 'color: #ef4444; font-size: 0.875rem; margin-top: 0.25rem;';
+                
+                field.parentNode.appendChild(errorDiv);
+                field.style.borderColor = '#ef4444';
+            }
+            
+            console.log('✅ 实时验证事件绑定完成');
+        });
+        
+        console.log('✅ 所有JavaScript代码加载完成');
+    </script>
+</body>
+
+</html>

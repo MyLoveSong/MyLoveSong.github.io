@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub API 测试 - 修复版</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        .config-section {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+        }
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        button {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin: 10px 5px;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .result {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            white-space: pre-wrap;
+            font-family: monospace;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .success { color: #4CAF50; }
+        .error { color: #f44336; }
+        .warning { color: #ff9800; }
+        .info { color: #2196F3; }
+        .status {
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        .status.success { background: rgba(76, 175, 80, 0.2); }
+        .status.error { background: rgba(244, 67, 54, 0.2); }
+        .status.warning { background: rgba(255, 152, 0, 0.2); }
+        .status.info { background: rgba(33, 150, 243, 0.2); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔐 GitHub API 配置测试</h1>
+        
+        <div class="config-section">
+            <h3>📋 配置信息</h3>
+            <div class="form-group">
+                <label for="username">GitHub 用户名:</label>
+                <input type="text" id="username" value="MyLoveSong" placeholder="输入您的GitHub用户名">
+            </div>
+            <div class="form-group">
+                <label for="token">Personal Access Token:</label>
+                <input type="text" id="token" placeholder="输入您的GitHub Personal Access Token" type="password">
+                <small style="color: #ffd700;">💡 获取方式：GitHub → Settings → Developer settings → Personal access tokens</small>
+            </div>
+            <div class="form-group">
+                <label for="perPage">每页数量:</label>
+                <input type="number" id="perPage" value="10" min="1" max="100">
+            </div>
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <input type="checkbox" id="useAuth" checked>
+                    <label for="useAuth">启用认证 (推荐)</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="config-section">
+            <h3>🧪 测试操作</h3>
+            <button onclick="testConnection()">🔗 测试连接</button>
+            <button onclick="fetchUserInfo()">👤 获取用户信息</button>
+            <button onclick="fetchRepositories()">📚 获取仓库列表</button>
+            <button onclick="testRateLimit()">⏱️ 检查限流状态</button>
+            <button onclick="clearResults()">🗑️ 清空结果</button>
+        </div>
+
+        <div class="result" id="result">
+            <div class="status info">🚀 准备就绪！请配置您的GitHub信息并开始测试。</div>
+        </div>
+    </div>
+
+    <script>
+        // GitHub API 配置
+        let GITHUB_API_CONFIG = {
+            baseUrl: 'https://api.github.com',
+            username: 'MyLoveSong',
+            perPage: 10,
+            token: '',
+            useAuth: true
+        };
+
+        // 更新配置
+        function updateConfig() {
+            GITHUB_API_CONFIG.username = document.getElementById('username').value;
+            GITHUB_API_CONFIG.token = document.getElementById('token').value;
+            GITHUB_API_CONFIG.perPage = parseInt(document.getElementById('perPage').value);
+            GITHUB_API_CONFIG.useAuth = document.getElementById('useAuth').checked;
+        }
+
+        // 显示结果
+        function showResult(message, type = 'info') {
+            const resultDiv = document.getElementById('result');
+            const timestamp = new Date().toLocaleTimeString();
+            const statusDiv = document.createElement('div');
+            statusDiv.className = `status ${type}`;
+            statusDiv.innerHTML = `[${timestamp}] ${message}`;
+            resultDiv.appendChild(statusDiv);
+            resultDiv.scrollTop = resultDiv.scrollHeight;
+        }
+
+        // 测试基本连接
+        async function testConnection() {
+            updateConfig();
+            showResult('🔗 正在测试GitHub API连接...', 'info');
+            
+            try {
+                const headers = {
+                    'Accept': 'application/vnd.github.v3+json'
+                };
+                
+                if (GITHUB_API_CONFIG.token && GITHUB_API_CONFIG.useAuth) {
+                    headers['Authorization'] = `token ${GITHUB_API_CONFIG.token}`;
+                }
+
+                const response = await fetch(`${GITHUB_API_CONFIG.baseUrl}/rate_limit`, {
+                    method: 'GET',
+                    headers: headers
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    showResult('✅ 连接成功！', 'success');
+                    showResult(`📊 限流信息: ${JSON.stringify(data, null, 2)}`, 'info');
+                } else {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+            } catch (error) {
+                showResult(`❌ 连接失败: ${error.message}`, 'error');
+            }
+        }
+
+        // 获取用户信息
+        async function fetchUserInfo() {
+            updateConfig();
+            showResult('👤 正在获取用户信息...', 'info');
+            
+            try {
+                const headers = {
+                    'Accept': 'application/vnd.github.v3+json'
+                };
+                
+                if (GITHUB_API_CONFIG.token && GITHUB_API_CONFIG.useAuth) {
+                    headers['Authorization'] = `token ${GITHUB_API_CONFIG.token}`;
+                }
+
+                const response = await fetch(`${GITHUB_API_CONFIG.baseUrl}/users/${GITHUB_API_CONFIG.username}`, {
+                    method: 'GET',
+                    headers: headers
+                });
+
+                if (response.ok) {
+                    const user = await response.json();
+                    showResult('✅ 用户信息获取成功！', 'success');
+                    showResult(`👤 用户名: ${user.login}`, 'info');
+                    showResult(`📝 姓名: ${user.name || '未设置'}`, 'info');
+                    showResult(`📧 邮箱: ${user.email || '未公开'}`, 'info');
+                    showResult(`🏢 公司: ${user.company || '未设置'}`, 'info');
+                    showResult(`📍 位置: ${user.location || '未设置'}`, 'info');
+                    showResult(`📊 公开仓库: ${user.public_repos}`, 'info');
+                    showResult(`👥 关注者: ${user.followers}`, 'info');
+                } else {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+            } catch (error) {
+                showResult(`❌ 获取用户信息失败: ${error.message}`, 'error');
+            }
+        }
+
+        // 获取仓库列表
+        async function fetchRepositories() {
+            updateConfig();
+            showResult('📚 正在获取仓库列表...', 'info');
+            
+            try {
+                const headers = {
+                    'Accept': 'application/vnd.github.v3+json'
+                };
+                
+                if (GITHUB_API_CONFIG.token && GITHUB_API_CONFIG.useAuth) {
+                    headers['Authorization'] = `token ${GITHUB_API_CONFIG.token}`;
+                }
+
+                const response = await fetch(
+                    `${GITHUB_API_CONFIG.baseUrl}/users/${GITHUB_API_CONFIG.username}/repos?per_page=${GITHUB_API_CONFIG.perPage}&sort=updated`,
+                    {
+                        method: 'GET',
+                        headers: headers
+                    }
+                );
+
+                if (response.ok) {
+                    const repos = await response.json();
+                    showResult(`✅ 成功获取 ${repos.length} 个仓库！`, 'success');
+                    
+                    repos.forEach((repo, index) => {
+                        showResult(`${index + 1}. ${repo.name} (${repo.language || 'Other'}) - ⭐${repo.stargazers_count}`, 'info');
+                    });
+                } else {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+            } catch (error) {
+                showResult(`❌ 获取仓库列表失败: ${error.message}`, 'error');
+            }
+        }
+
+        // 检查限流状态
+        async function testRateLimit() {
+            updateConfig();
+            showResult('⏱️ 正在检查限流状态...', 'info');
+            
+            try {
+                const headers = {
+                    'Accept': 'application/vnd.github.v3+json'
+                };
+                
+                if (GITHUB_API_CONFIG.token && GITHUB_API_CONFIG.useAuth) {
+                    headers['Authorization'] = `token ${GITHUB_API_CONFIG.token}`;
+                }
+
+                const response = await fetch(`${GITHUB_API_CONFIG.baseUrl}/rate_limit`, {
+                    method: 'GET',
+                    headers: headers
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    const core = data.resources.core;
+                    const search = data.resources.search;
+                    
+                    showResult('✅ 限流状态获取成功！', 'success');
+                    showResult(`📊 核心API: ${core.remaining}/${core.limit} 次剩余`, 
+                        core.remaining > 100 ? 'success' : core.remaining > 10 ? 'warning' : 'error');
+                    showResult(`⏰ 重置时间: ${new Date(core.reset * 1000).toLocaleString()}`, 'info');
+                    
+                    if (search) {
+                        showResult(`🔍 搜索API: ${search.remaining}/${search.limit} 次剩余`, 
+                            search.remaining > 20 ? 'success' : search.remaining > 5 ? 'warning' : 'error');
+                    }
+                } else {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+            } catch (error) {
+                showResult(`❌ 检查限流状态失败: ${error.message}`, 'error');
+            }
+        }
+
+        // 清空结果
+        function clearResults() {
+            document.getElementById('result').innerHTML = '';
+            showResult('🗑️ 结果已清空', 'info');
+        }
+
+        // 页面加载完成后的提示
+        window.addEventListener('load', () => {
+            showResult('💡 提示：请先配置您的GitHub Personal Access Token', 'warning');
+            showResult('🔗 获取Token：https://github.com/settings/tokens', 'info');
+            showResult('📋 需要权限：public_repo, read:user', 'info');
+        });
+    </script>
+</body>
+</html>

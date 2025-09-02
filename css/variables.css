@@ -1,0 +1,94 @@
+/* =================================
+   CSS变量定义 - 音乐主题色彩系统
+   ================================= */
+
+/* 导入Google Fonts - 音乐主题字体 */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+:root {
+    /* 主色调 - 音乐蓝紫渐变 */
+    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --primary-light: #667eea;
+    --primary-dark: #764ba2;
+    
+    /* 辅助色 - 音乐金 */
+    --accent-gold: #f4d03f;
+    --accent-gold-light: #f7dc6f;
+    
+    /* 文字颜色 */
+    --text-primary: #2d3748;
+    --text-secondary: #4a5568;
+    --text-light: #718096;
+    --text-white: #ffffff;
+    
+    /* 背景色 */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8fafc;
+    --bg-card: #ffffff;
+    --bg-overlay: rgba(255, 255, 255, 0.95);
+    
+    /* 边框和阴影 */
+    --border-light: rgba(226, 232, 240, 0.8);
+    --shadow-light: 0 10px 30px rgba(0,0,0,0.1);
+    --shadow-medium: 0 15px 35px rgba(0,0,0,0.15);
+    --shadow-heavy: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    
+    /* 圆角 */
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-xl: 32px;
+    
+    /* 动画时间 */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* 音乐符号装饰 */
+    --music-note: '♪';
+    --music-clef: '𝄞';
+    --music-beat: '♩';
+    
+    /* 字体 */
+    --font-family: 'Inter', 'Helvetica Neue', 'Arial', '微软雅黑', sans-serif;
+    --font-display: 'Playfair Display', serif;
+    --font-size-base: 16px;
+    --font-size-sm: 0.875rem;
+    --font-size-lg: 1.25rem;
+    --font-size-xl: 1.5rem;
+    --font-size-xxl: 2rem;
+    --font-size-hero: 2.5rem;
+    
+    /* 行高 */
+    --line-height-base: 1.6;
+    --line-height-heading: 1.2;
+    
+    /* 间距 */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-xxl: 3rem;
+    
+    /* 断点 */
+    --breakpoint-sm: 576px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 1024px;
+    --breakpoint-xl: 1200px;
+}
+
+/* 深色主题变量 */
+[data-theme="dark"] {
+    --text-primary: #f7fafc;
+    --text-secondary: #e0e0e0;
+    --text-light: #b0b0b0;
+    --bg-primary: #1a202c;
+    --bg-secondary: #2d3748;
+    --bg-card: #2c2c2c;
+    --bg-overlay: rgba(15, 20, 25, 0.95);
+    --border-light: rgba(116, 185, 255, 0.2);
+    --shadow-light: 0 10px 30px rgba(0,0,0,0.4);
+    --shadow-medium: 0 15px 35px rgba(0,0,0,0.5);
+    --shadow-heavy: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub API 快速测试</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        button {
+            background: linear-gradient(45deg, #10b981, #059669);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin: 10px 5px;
+            width: 100%;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        .result {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            white-space: pre-wrap;
+            font-family: monospace;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .success { color: #4CAF50; }
+        .error { color: #f44336; }
+        .warning { color: #ff9800; }
+        .info { color: #2196F3; }
+        .status {
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        .status.success { background: rgba(76, 175, 80, 0.2); }
+        .status.error { background: rgba(244, 67, 54, 0.2); }
+        .status.warning { background: rgba(255, 152, 0, 0.2); }
+        .status.info { background: rgba(33, 150, 243, 0.2); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 GitHub API 快速测试</h1>
+        
+        <button onclick="testAll()">🧪 开始全面测试</button>
+        <button onclick="clearResults()">🗑️ 清空结果</button>
+
+        <div class="result" id="result">
+            <div class="status info">🚀 准备就绪！点击"开始全面测试"来验证您的GitHub API配置。</div>
+        </div>
+    </div>
+
+    <script>
+        // 使用您配置的GitHub API设置
+        const GITHUB_API_CONFIG = {
+            baseUrl: 'https://api.github.com',
+            username: 'MyLoveSong',
+            perPage: 10,
+            token: '', // 请在此处填入您的Token（可选）
+            useAuth: false // 默认关闭认证
+        };
+
+        // 显示结果
+        function showResult(message, type = 'info') {
+            const resultDiv = document.getElementById('result');
+            const timestamp = new Date().toLocaleTimeString();
+            const statusDiv = document.createElement('div');
+            statusDiv.className = `status ${type}`;
+            statusDiv.innerHTML = `[${timestamp}] ${message}`;
+            resultDiv.appendChild(statusDiv);
+            resultDiv.scrollTop = resultDiv.scrollHeight;
+        }
+
+        // 测试基本连接
+        async function testConnection() {
+            showResult('🔗 测试1: 基本连接测试...', 'info');
+            
+            try {
+                const headers = {
+                    'Accept': 'application/vnd.github.v3+json'
+                };
+                
+                if (GITHUB_API_CONFIG.token && GITHUB_API_CONFIG.useAuth) {
+                    headers['Authorization'] = `token ${GITHUB_API_CONFIG.token}`;
+                }
+
+                const response = await fetch(`${GITHUB_API_CONFIG.baseUrl}/rate_limit`, {
+                    method: 'GET',
+                    headers: headers
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    showResult('✅ 连接成功！', 'success');
+                    showResult(`📊 限流状态: ${data.resources.core.remaining}/${data.resources.core.limit} 次剩余`, 'info');
+                    showResult(`⏰ 重置时间: ${new Date(data.resources.core.reset * 1000).toLocaleString()}`, 'info');
+                    return true;
+                } else {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+            } catch (error) {
+                showResult(`❌ 连接失败: ${error.message}`, 'error');
+                return false;
+            }
+        }
+
+        // 测试用户信息获取
+        async function testUserInfo() {
+            showResult('👤 测试2: 用户信息获取...', 'info');
+            
+            try {
+                const headers = {
+                    'Accept': 'application/vnd.github.v3+json'
+                };
+                
+                if (GITHUB_API_CONFIG.token && GITHUB_API_CONFIG.useAuth) {
+                    headers['Authorization'] = `token ${GITHUB_API_CONFIG.token}`;
+                }
+
+                const response = await fetch(`${GITHUB_API_CONFIG.baseUrl}/users/${GITHUB_API_CONFIG.username}`, {
+                    method: 'GET',
+                    headers: headers
+                });
+
+                if (response.ok) {
+                    const user = await response.json();
+                    showResult('✅ 用户信息获取成功！', 'success');
+                    showResult(`👤 用户名: ${user.login}`, 'info');
+                    showResult(`📝 姓名: ${user.name || '未设置'}`, 'info');
+                    showResult(`📊 公开仓库: ${user.public_repos}`, 'info');
+                    showResult(`👥 关注者: ${user.followers}`, 'info');
+                    return true;
+                } else {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+            } catch (error) {
+                showResult(`❌ 用户信息获取失败: ${error.message}`, 'error');
+                return false;
+            }
+        }
+
+        // 测试仓库列表获取
+        async function testRepositories() {
+            showResult('📚 测试3: 仓库列表获取...', 'info');
+            
+            try {
+                const headers = {
+                    'Accept': 'application/vnd.github.v3+json'
+                };
+                
+                if (GITHUB_API_CONFIG.token && GITHUB_API_CONFIG.useAuth) {
+                    headers['Authorization'] = `token ${GITHUB_API_CONFIG.token}`;
+                }
+
+                const response = await fetch(
+                    `${GITHUB_API_CONFIG.baseUrl}/users/${GITHUB_API_CONFIG.username}/repos?per_page=${GITHUB_API_CONFIG.perPage}&sort=updated`,
+                    {
+                        method: 'GET',
+                        headers: headers
+                    }
+                );
+
+                if (response.ok) {
+                    const repos = await response.json();
+                    showResult(`✅ 成功获取 ${repos.length} 个仓库！`, 'success');
+                    
+                    repos.slice(0, 5).forEach((repo, index) => {
+                        showResult(`${index + 1}. ${repo.name} (${repo.language || 'Other'}) - ⭐${repo.stargazers_count}`, 'info');
+                    });
+                    
+                    if (repos.length > 5) {
+                        showResult(`... 还有 ${repos.length - 5} 个仓库`, 'info');
+                    }
+                    return true;
+                } else {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+            } catch (error) {
+                showResult(`❌ 仓库列表获取失败: ${error.message}`, 'error');
+                return false;
+            }
+        }
+
+        // 全面测试
+        async function testAll() {
+            clearResults();
+            showResult('🚀 开始全面测试GitHub API配置...', 'info');
+            showResult(`🔧 配置信息:`, 'info');
+            showResult(`   - 用户名: ${GITHUB_API_CONFIG.username}`, 'info');
+            showResult(`   - Token: ${GITHUB_API_CONFIG.token.substring(0, 10)}...`, 'info');
+            showResult(`   - 认证: ${GITHUB_API_CONFIG.useAuth ? '启用' : '禁用'}`, 'info');
+            showResult('', 'info');
+
+            const results = [];
+            
+            // 测试1: 基本连接
+            results.push(await testConnection());
+            showResult('', 'info');
+            
+            // 测试2: 用户信息
+            results.push(await testUserInfo());
+            showResult('', 'info');
+            
+            // 测试3: 仓库列表
+            results.push(await testRepositories());
+            showResult('', 'info');
+            
+            // 总结
+            const successCount = results.filter(r => r).length;
+            const totalTests = results.length;
+            
+            if (successCount === totalTests) {
+                showResult('🎉 所有测试通过！您的GitHub API配置完全正常！', 'success');
+                showResult('✅ 现在可以正常使用项目数据加载功能了', 'success');
+            } else {
+                showResult(`⚠️ 测试结果: ${successCount}/${totalTests} 通过`, 'warning');
+                showResult('❌ 请检查Token配置和网络连接', 'error');
+            }
+        }
+
+        // 清空结果
+        function clearResults() {
+            document.getElementById('result').innerHTML = '';
+        }
+
+        // 页面加载完成后的提示
+        window.addEventListener('load', () => {
+            showResult('💡 使用您配置的Token进行测试', 'info');
+            showResult('🔧 Token: ' + GITHUB_API_CONFIG.token.substring(0, 10) + '...', 'info');
+        });
+    </script>
+</body>
+</html>

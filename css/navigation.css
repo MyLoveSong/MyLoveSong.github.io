@@ -1,0 +1,368 @@
+/* =================================
+   导航栏样式
+   ================================= */
+
+/* 导航栏容器 */
+header {
+    background: var(--primary-gradient);
+    color: var(--text-white);
+    padding: var(--spacing-md) var(--spacing-xl);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: var(--shadow-heavy);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-light);
+    transition: var(--transition-slow);
+}
+
+/* 导航栏背景装饰 */
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(118, 75, 162, 0.2) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+    animation: float 15s ease-in-out infinite;
+}
+
+/* 导航栏布局 */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+}
+
+/* Logo样式 */
+.logo h1 {
+    color: var(--text-white);
+    font-size: 2rem;
+    font-family: var(--font-display);
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    margin: 0;
+    position: relative;
+}
+
+.logo h1::before {
+    content: var(--music-clef);
+    position: absolute;
+    left: -2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    color: var(--accent-gold);
+    opacity: 0.8;
+    animation: float 3s ease-in-out infinite;
+}
+
+/* 导航菜单 */
+header nav {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+}
+
+header nav ul {
+    display: flex;
+    list-style: none;
+    gap: var(--spacing-xl);
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+}
+
+header nav a {
+    color: var(--text-white);
+    font-weight: 500;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-md);
+    transition: var(--transition-normal);
+    position: relative;
+    text-decoration: none;
+    font-size: var(--font-size-base);
+}
+
+/* 导航链接悬停效果 */
+header nav a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--accent-gold);
+    transform: translateY(-2px);
+}
+
+header nav a::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--accent-gold);
+    transition: var(--transition-normal);
+    transform: translateX(-50%);
+}
+
+header nav a:hover::before {
+    width: 100%;
+}
+
+/* 导航高亮样式 */
+header nav a.active {
+    background: rgba(244, 208, 63, 0.2);
+    color: var(--accent-gold);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(244, 208, 63, 0.3);
+}
+
+header nav a.active::before {
+    width: 100%;
+    background: var(--accent-gold);
+}
+
+/* 导航链接动效增强 */
+header nav a {
+    position: relative;
+    overflow: hidden;
+}
+
+header nav a::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+header nav a:hover::after {
+    left: 100%;
+}
+
+/* 主题切换按钮 */
+.theme-toggle {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-white);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: var(--transition-slow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-light);
+}
+
+.theme-toggle::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: var(--accent-gold);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: var(--transition-slow);
+    z-index: -1;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1) rotate(180deg);
+    border-color: var(--accent-gold);
+    box-shadow: 0 8px 25px rgba(244, 208, 63, 0.3);
+}
+
+.theme-toggle:hover::before {
+    width: 100%;
+    height: 100%;
+}
+
+/* 汉堡菜单按钮 */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    padding: var(--spacing-sm);
+    background: none;
+    border: none;
+    gap: 4px;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background: var(--text-white);
+    border-radius: 2px;
+    transition: var(--transition-normal);
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* 移动端导航菜单 */
+.mobile-nav {
+    display: none;
+    position: fixed;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--primary-gradient);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid var(--border-light);
+    padding: var(--spacing-lg);
+    transform: translateY(-100%);
+    transition: var(--transition-slow);
+    z-index: 999;
+}
+
+.mobile-nav.active {
+    transform: translateY(0);
+}
+
+.mobile-nav ul {
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.mobile-nav a {
+    display: block;
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    text-align: center;
+    font-size: var(--font-size-lg);
+}
+
+/* 深色主题导航栏调整 */
+[data-theme="dark"] header {
+    background: var(--primary-gradient);
+    border-bottom-color: var(--border-light);
+}
+
+[data-theme="dark"] header::before {
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.4) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(118, 75, 162, 0.3) 0%, transparent 50%);
+}
+
+[data-theme="dark"] .logo h1::before {
+    color: var(--accent-gold-light);
+}
+
+[data-theme="dark"] header nav a:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: var(--accent-gold-light);
+}
+
+[data-theme="dark"] .theme-toggle {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+[data-theme="dark"] .theme-toggle:hover {
+    border-color: var(--accent-gold-light);
+    box-shadow: 0 8px 25px rgba(244, 208, 63, 0.4);
+}
+
+/* 响应式导航栏 */
+@media (max-width: 1024px) {
+    header {
+        padding: var(--spacing-md);
+    }
+    
+    header nav ul {
+        gap: var(--spacing-lg);
+    }
+    
+    .logo h1 {
+        font-size: 1.8rem;
+    }
+    
+    .logo h1::before {
+        left: -1.5rem;
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+    
+    header nav {
+        display: none;
+    }
+    
+    .mobile-nav {
+        display: block;
+    }
+    
+    .logo h1 {
+        font-size: 1.6rem;
+    }
+    
+    .logo h1::before {
+        left: -1.2rem;
+        font-size: 1rem;
+    }
+    
+    .theme-toggle {
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+    
+    .logo h1 {
+        font-size: 1.4rem;
+    }
+    
+    .logo h1::before {
+        left: -1rem;
+        font-size: 0.9rem;
+    }
+    
+    .theme-toggle {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    
+    .mobile-nav {
+        padding: var(--spacing-md);
+    }
+    
+    .mobile-nav a {
+        padding: var(--spacing-sm) var(--spacing-md);
+        font-size: var(--font-size-base);
+    }
+}

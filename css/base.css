@@ -1,0 +1,318 @@
+/* =================================
+   CSS变量定义
+   ================================= */
+
+:root {
+    /* 音乐主题色彩系统 */
+    --primary-color: #1e40af;        /* 深蓝 - 古典音乐的深邃 */
+    --primary-light: #3b82f6;        /* 蓝色 - 现代音乐的活力 */
+    --primary-dark: #1e3a8a;         /* 深蓝 - 专业音乐厅 */
+    --secondary-color: #d97706;       /* 琥珀色 - 温暖的音乐灯光 */
+    --secondary-dark: #b45309;       /* 深琥珀 - 古典乐器质感 */
+    --accent-color: #7c3aed;         /* 紫色 - 艺术创意 */
+    --gold-accent: #f59e0b;          /* 金色 - 音乐厅装饰 */
+    --silver-accent: #94a3b8;        /* 银色 - 现代音响设备 */
+    --success-color: #059669;        /* 翠绿 - 和谐音符 */
+    --warning-color: #d97706;        /* 琥珀 - 注意音符 */
+    --danger-color: #dc2626;         /* 红色 - 强音符 */
+    
+    /* 音乐厅中性色彩 */
+    --dark-color: #1e293b;           /* 音乐厅深色背景 */
+    --dark-secondary: #334155;       /* 次级深色 - 乐器阴影 */
+    --light-color: #f1f5f9;          /* 纯净白 - 钢琴键白 */
+    --light-secondary: #cbd5e1;      /* 浅灰 - 音响设备 */
+    --white: #ffffff;                /* 纯白 - 乐谱背景 */
+    --background-color: #f8fafc;     /* 微蓝白 - 音乐厅照明 */
+    --warm-background: #fefbf7;      /* 暖白 - 温馨音乐沙龙 */
+    --text-color: #1e293b;           /* 深色文字 - 乐谱黑 */
+    --muted-text: #64748b;           /* 柔和文字 - 音符灰 */
+    
+    /* 页面特定主题色 */
+    --about-theme: #9b59b6;
+    --products-theme: #e67e22;
+    --services-theme: #16a085;
+    --contact-theme: #e74c3c;
+    
+    /* 字体 */
+    --font-family: 'Helvetica', 'Arial', '微软雅黑', sans-serif;
+    --font-size-base: 16px;
+    --font-size-sm: 0.875rem;
+    --font-size-lg: 1.25rem;
+    --font-size-xl: 1.5rem;
+    --font-size-xxl: 2rem;
+    --font-size-hero: 2.5rem;
+    
+    /* 行高 */
+    --line-height-base: 1.6;
+    --line-height-heading: 1.2;
+    
+    /* 间距 */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-xxl: 3rem;
+    
+    /* 边框 */
+    --border-radius: 6px;
+    --border-radius-sm: 4px;
+    --border-radius-lg: 12px;
+    --border-width: 2px;
+    
+    /* 阴影 */
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+    --shadow-md: 0 2px 8px rgba(0,0,0,0.1);
+    --shadow-lg: 0 4px 8px rgba(0,0,0,0.2);
+    
+    /* 过渡 */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+    
+    /* 断点 */
+    --breakpoint-sm: 576px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 1024px;
+    --breakpoint-xl: 1200px;
+}
+
+/* =================================
+   全局重置与基础样式
+   ================================= */
+
+/* 全局重置 */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* 全局字体和颜色设定 */
+body {
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+    color: var(--text-primary);
+    background: var(--primary-gradient);
+    background-attachment: fixed;
+    background-size: 400% 400%;
+    min-height: 100vh;
+    transition: var(--transition-slow);
+    animation: gradientShift 15s ease infinite;
+}
+
+/* 主题切换过渡效果 */
+body.theme-transitioning * {
+    transition: background-color var(--transition-normal), color var(--transition-normal), border-color var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+/* 深色主题 */
+body.dark-theme {
+    color: var(--text-primary);
+    background: var(--primary-gradient);
+    background-attachment: fixed;
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+}
+
+/* 背景纹理装饰 */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(118, 75, 162, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, rgba(244, 208, 63, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+    animation: float 20s ease-in-out infinite;
+}
+
+body.dark-theme::before {
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(118, 75, 162, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, rgba(244, 208, 63, 0.1) 0%, transparent 50%);
+}
+
+/* 基础动画 */
+@keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(1deg); }
+}
+
+/* 基础链接样式 */
+a {
+    color: var(--primary-light);
+    text-decoration: none;
+    transition: var(--transition-normal);
+    position: relative;
+}
+
+a:hover {
+    color: var(--accent-gold);
+}
+
+a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent-gold);
+    transition: var(--transition-normal);
+}
+
+a:hover::after {
+    width: 100%;
+}
+
+/* 基础图片样式 */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* 基础列表样式 */
+ul, ol {
+    list-style: none;
+}
+
+/* 基础按钮重置 */
+button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+/* 基础输入框重置 */
+input, textarea, select {
+    font-family: inherit;
+    font-size: inherit;
+}
+
+/* 基础表格样式 */
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+/* 基础代码样式 */
+code {
+    font-family: 'Courier New', monospace;
+    background: var(--bg-secondary);
+    padding: 2px 6px;
+    border-radius: var(--radius-sm);
+    font-size: 0.9em;
+}
+
+pre {
+    background: var(--bg-secondary);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    overflow-x: auto;
+    margin: var(--spacing-md) 0;
+}
+
+/* 基础引用样式 */
+blockquote {
+    border-left: 4px solid var(--primary-light);
+    padding-left: var(--spacing-md);
+    margin: var(--spacing-md) 0;
+    font-style: italic;
+    color: var(--text-secondary);
+}
+
+/* 基础分割线样式 */
+hr {
+    border: none;
+    height: 1px;
+    background: var(--border-light);
+    margin: var(--spacing-xl) 0;
+}
+
+/* 基础容器样式 */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+/* 基础网格系统 */
+.grid {
+    display: grid;
+    gap: var(--spacing-md);
+}
+
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+/* 基础Flexbox系统 */
+.flex {
+    display: flex;
+}
+
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+/* 基础间距工具类 */
+.mt-1 { margin-top: var(--spacing-sm); }
+.mt-2 { margin-top: var(--spacing-md); }
+.mt-3 { margin-top: var(--spacing-lg); }
+.mt-4 { margin-top: var(--spacing-xl); }
+
+.mb-1 { margin-bottom: var(--spacing-sm); }
+.mb-2 { margin-bottom: var(--spacing-md); }
+.mb-3 { margin-bottom: var(--spacing-lg); }
+.mb-4 { margin-bottom: var(--spacing-xl); }
+
+.p-1 { padding: var(--spacing-sm); }
+.p-2 { padding: var(--spacing-md); }
+.p-3 { padding: var(--spacing-lg); }
+.p-4 { padding: var(--spacing-xl); }
+
+/* 基础文本工具类 */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-light { color: var(--text-light); }
+.text-white { color: var(--text-white); }
+
+/* 基础显示工具类 */
+.hidden { display: none; }
+.visible { display: block; }
+
+.inline { display: inline; }
+.inline-block { display: inline-block; }
+.block { display: block; }

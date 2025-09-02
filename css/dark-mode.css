@@ -1,0 +1,316 @@
+/* =================================
+   暗黑主题样式覆盖
+   ================================= */
+
+/* 暗黑主题下的文字颜色覆盖 - 使用更高优先级 */
+[data-theme="dark"] #hero,
+[data-theme="dark"] #hero h1,
+[data-theme="dark"] #hero h2,
+[data-theme="dark"] #hero h3,
+[data-theme="dark"] #hero h4,
+[data-theme="dark"] #hero p,
+[data-theme="dark"] #hero .hero-text,
+[data-theme="dark"] #hero .hero-text h1,
+[data-theme="dark"] #hero .hero-text h2,
+[data-theme="dark"] #hero .hero-text p,
+[data-theme="dark"] #hero .hero-motto,
+[data-theme="dark"] #hero .hero-motto .motto-text,
+[data-theme="dark"] #hero .hero-motto .motto-subtitle,
+[data-theme="dark"] #hero .hero-content,
+[data-theme="dark"] #hero .hero-content * {
+    color: var(--text-primary) !important;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* 暗黑主题下的按钮文字 - 使用更高优先级 */
+[data-theme="dark"] #hero .cta-button,
+[data-theme="dark"] #hero .cta-button.secondary,
+[data-theme="dark"] .cta-button,
+[data-theme="dark"] #hero .hero-buttons .cta-button,
+[data-theme="dark"] #hero .hero-buttons .cta-button.secondary {
+    color: var(--text-primary) !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] #hero .cta-button:active,
+[data-theme="dark"] #hero .cta-button:hover,
+[data-theme="dark"] .cta-button:active,
+[data-theme="dark"] .cta-button:hover,
+[data-theme="dark"] #hero .hero-buttons .cta-button:active,
+[data-theme="dark"] #hero .hero-buttons .cta-button:hover {
+    color: var(--text-primary) !important;
+}
+
+/* 暗黑主题下的Header导航 */
+[data-theme="dark"] header,
+[data-theme="dark"] header nav a,
+[data-theme="dark"] header .logo h1 {
+    color: var(--text-primary) !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] header nav a:hover {
+    color: var(--accent-gold) !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+/* 暗黑主题下的Footer */
+[data-theme="dark"] footer,
+[data-theme="dark"] footer nav a,
+[data-theme="dark"] footer .footer-section h3,
+[data-theme="dark"] footer .footer-section h4,
+[data-theme="dark"] footer .footer-section p {
+    color: var(--text-primary) !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] footer nav a:hover {
+    color: var(--accent-gold) !important;
+}
+
+/* 暗黑主题下的主题切换按钮 */
+[data-theme="dark"] .theme-toggle {
+    color: var(--text-primary) !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* 暗黑主题下的Section文字 */
+[data-theme="dark"] #about h2,
+[data-theme="dark"] #about h3,
+[data-theme="dark"] #about h4,
+[data-theme="dark"] #about p,
+[data-theme="dark"] #about .about-text,
+[data-theme="dark"] #about .about-experience {
+    color: var(--text-primary) !important;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] #projects h2,
+[data-theme="dark"] #projects h3,
+[data-theme="dark"] #projects h4,
+[data-theme="dark"] #projects p,
+[data-theme="dark"] #projects .projects-intro,
+[data-theme="dark"] #projects .project-card {
+    color: var(--text-primary) !important;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] #projects .project-card h3,
+[data-theme="dark"] #projects .project-card h4,
+[data-theme="dark"] #projects .project-card p,
+[data-theme="dark"] #projects .project-card li {
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] #projects .features-list li {
+    color: var(--text-primary) !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* 暗黑主题下的动态作品区域 */
+[data-theme="dark"] .dynamic-works {
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .dynamic-works h3 {
+    color: var(--text-primary) !important;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .dynamic-works .filter-button {
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .dynamic-works .filter-button:hover:not(.active) {
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .dynamic-works .work-card {
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .dynamic-works .works-empty {
+    color: var(--text-primary) !important;
+}
+
+/* 暗黑主题下的兴趣爱好section */
+[data-theme="dark"] #hobbies h2,
+[data-theme="dark"] #hobbies h3,
+[data-theme="dark"] #hobbies p,
+[data-theme="dark"] #hobbies .hobby-category,
+[data-theme="dark"] #hobbies .hobby-details {
+    color: var(--text-primary) !important;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] #hobbies .hobby-category {
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] #hobbies .hobby-tag {
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] #hobbies .hobby-tag:hover {
+    color: var(--primary-dark) !important;
+}
+
+/* 暗黑主题下的音乐表演section */
+[data-theme="dark"] #performances h2,
+[data-theme="dark"] #performances h3,
+[data-theme="dark"] #performances p,
+[data-theme="dark"] #performances .performance-item,
+[data-theme="dark"] #music-performances h2,
+[data-theme="dark"] #music-performances h3,
+[data-theme="dark"] #music-performances h4,
+[data-theme="dark"] #music-performances p,
+[data-theme="dark"] #music-performances .section-intro,
+[data-theme="dark"] #music-performances .card h3,
+[data-theme="dark"] #music-performances .card h4,
+[data-theme="dark"] #music-performances .card p,
+[data-theme="dark"] #music-performances .service-details h4,
+[data-theme="dark"] #music-performances .service-details p,
+[data-theme="dark"] #music-performances .service-details li,
+[data-theme="dark"] #music-performances .pricing,
+[data-theme="dark"] #music-performances .pricing strong {
+    color: var(--text-primary) !important;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] #performances .performance-item,
+[data-theme="dark"] #music-performances .card {
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] #performances .performance-tag {
+    color: var(--text-primary) !important;
+}
+
+/* 暗黑主题下的联系section */
+[data-theme="dark"] #contact h2,
+[data-theme="dark"] #contact h3,
+[data-theme="dark"] #contact h4,
+[data-theme="dark"] #contact p,
+[data-theme="dark"] #contact .contact-info,
+[data-theme="dark"] #contact .contact-methods {
+    color: var(--text-primary) !important;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] #contact .contact-form {
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] #contact .contact-form label {
+    color: var(--text-primary) !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] #contact .contact-form input,
+[data-theme="dark"] #contact .contact-form textarea {
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] #contact .contact-form input::placeholder,
+[data-theme="dark"] #contact .contact-form textarea::placeholder {
+    color: var(--text-light) !important;
+}
+
+[data-theme="dark"] #contact .contact-form .form-help {
+    color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] #contact .contact-method {
+    color: var(--text-primary) !important;
+}
+
+/* 暗黑主题下的背景调整 */
+[data-theme="dark"] #hero {
+    background: var(--bg-secondary) !important;
+}
+
+[data-theme="dark"] #about,
+[data-theme="dark"] #projects,
+[data-theme="dark"] .dynamic-works,
+[data-theme="dark"] #hobbies,
+[data-theme="dark"] #performances,
+[data-theme="dark"] #music-performances,
+[data-theme="dark"] #contact {
+    background: var(--bg-secondary) !important;
+}
+
+/* 暗黑主题下的卡片背景 */
+[data-theme="dark"] #projects .project-card,
+[data-theme="dark"] .dynamic-works .work-card,
+[data-theme="dark"] #hobbies .hobby-category,
+[data-theme="dark"] #performances .performance-item,
+[data-theme="dark"] #music-performances .card,
+[data-theme="dark"] #contact .contact-form,
+[data-theme="dark"] #contact .contact-method,
+[data-theme="dark"] .dynamic-works .filter-button,
+[data-theme="dark"] .dynamic-works .works-empty {
+    background: var(--bg-card) !important;
+    border-color: var(--border-light) !important;
+}
+
+/* 暗黑主题下的hover效果 */
+[data-theme="dark"] #projects .project-card:hover,
+[data-theme="dark"] .dynamic-works .work-card:hover,
+[data-theme="dark"] #hobbies .hobby-category:hover,
+[data-theme="dark"] #performances .performance-item:hover,
+[data-theme="dark"] #music-performances .card:hover,
+[data-theme="dark"] #contact .contact-method:hover,
+[data-theme="dark"] .dynamic-works .filter-button:hover:not(.active) {
+    background: var(--bg-primary) !important;
+    border-color: var(--accent-gold) !important;
+}
+
+/* 暗黑主题下的输入框聚焦效果 */
+[data-theme="dark"] #contact .contact-form input:focus,
+[data-theme="dark"] #contact .contact-form textarea:focus {
+    background: var(--bg-primary) !important;
+    border-color: var(--accent-gold) !important;
+    box-shadow: 0 0 0 3px rgba(244, 208, 63, 0.2) !important;
+}
+
+/* 暗黑主题下的关键词突出显示 */
+[data-theme="dark"] #projects .project-card strong,
+[data-theme="dark"] #projects .project-card .highlight {
+    color: var(--accent-gold) !important;
+    background: rgba(244, 208, 63, 0.1) !important;
+    border-color: rgba(244, 208, 63, 0.3) !important;
+}
+
+[data-theme="dark"] #projects .project-card strong:hover,
+[data-theme="dark"] #projects .project-card .highlight:hover {
+    background: rgba(244, 208, 63, 0.2) !important;
+    border-color: rgba(244, 208, 63, 0.5) !important;
+}
+
+/* 暗黑主题下的项目链接 */
+[data-theme="dark"] #projects .project-link {
+    color: var(--accent-gold) !important;
+}
+
+[data-theme="dark"] #projects .project-link:hover {
+    color: var(--text-primary) !important;
+}
+
+/* 暗黑主题下的emoji颜色 */
+[data-theme="dark"] #projects .features-list li::before {
+    color: var(--accent-gold) !important;
+}
+
+/* 暗黑主题下的联系图标 */
+[data-theme="dark"] #contact .contact-icon {
+    color: var(--accent-gold) !important;
+}
+
+/* 暗黑主题下的标签样式 */
+[data-theme="dark"] #projects .project-tag {
+    color: var(--primary-dark) !important;
+}
+
+[data-theme="dark"] #hobbies .hobby-tag:hover {
+    color: var(--primary-dark) !important;
+}
