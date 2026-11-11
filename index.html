@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Zeyu Xie, computer science undergraduate at Hangzhou City University. Research in robust visual learning, multimodal machine learning, and AI for health.">
+  <meta name="description" content="Zeyu Xie, computer science undergraduate at Hangzhou City University. Research in multimodal foundation models, robust visual learning, and personalized glucose forecasting.">
   <meta name="color-scheme" content="light">
   <title>Zeyu Xie | Research</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -87,6 +87,9 @@
     .projects { list-style: none; margin: 0; padding: 0; }
     .projects li + li { margin-top: 1.1rem; }
     .projects p { margin: .15rem 0 0; }
+    .credentials { display: grid; gap: 1.3rem; }
+    .credentials ul { margin: .45rem 0 0; padding-left: 1.15rem; }
+    .credentials li + li { margin-top: .35rem; }
     footer { border-top: 1px solid var(--line); padding-block: 1rem 2rem; color: var(--muted); font-size: .85rem; }
     footer p { margin: 0; }
     @media (max-width: 42rem) {
@@ -110,6 +113,7 @@
         <a href="#publication">Publication</a>
         <a href="#research">Research</a>
         <a href="#software">Software</a>
+        <a href="#education">Education &amp; honors</a>
         <a href="https://github.com/MyLoveSong">GitHub</a>
       </nav>
     </header>
@@ -119,10 +123,10 @@
           <h1 id="name">Zeyu Xie</h1>
           <p class="role">Computer Science · Hangzhou City University</p>
         </div>
-        <img class="portrait" src="portrait-zeyu-xie.jpg?v=retouched" alt="Portrait of Zeyu Xie" width="640" height="800">
+        <img class="portrait" src="portrait-zeyu-xie.jpg?v=original" alt="Portrait of Zeyu Xie" width="960" height="1440">
         <div class="bio">
-          <p>I am a computer science undergraduate interested in robust visual learning, multimodal machine learning, and AI for health.</p>
-          <p>I was a visiting student at Zhejiang University during the 2025–2026 academic year.</p>
+          <p>I am a computer science undergraduate at Hangzhou City University. I am interested in multimodal foundation models and in learning from noisy visual data and sparse personal histories.</p>
+          <p>My research spans robust food recognition, food and nutrition representation, and personalized glucose forecasting.</p>
         </div>
       </section>
 
@@ -132,7 +136,8 @@
           <p class="venue">IEEE Transactions on Multimedia · 2025</p>
           <h3 class="paper-title"><a href="https://doi.org/10.1109/TMM.2025.3542962">Robust Visual Food Recognition for Enriching Nutrition Knowledge Bases</a></h3>
           <p class="authors">Zhaoyan Ming, <strong>Zeyu Xie</strong>, Chao Zhang, Kui Su, Changzheng Yuan, and Tat-Seng Chua</p>
-          <p class="summary">We study how to learn reliable food recognition from noisy web images and use it to connect food photographs to nutrition knowledge bases.</p>
+          <p class="summary">We use language models to expand food names and develop cAUM and AccGap to address label noise in web images. The resulting food recognition system connects photographs to a nutrition knowledge base.</p>
+          <p class="summary"><strong>My contribution.</strong> As the first student author, I led the experiments and manuscript writing under my advisor’s supervision. I also led the provincial undergraduate research project behind the paper, contributing to food selection, synonym expansion, and web-image collection.</p>
         </article>
       </section>
 
@@ -140,7 +145,8 @@
         <h2 id="research-heading">Current research</h2>
         <div>
           <h3>Personalized postprandial glucose forecasting</h3>
-          <p class="summary">I lead an undergraduate project investigating how to combine meal information, pre-meal glucose, and an individual’s meal history to forecast their glucose trajectory after eating.</p>
+          <p class="summary">I lead a national undergraduate innovation project on forecasting glucose over the 90 minutes after a meal. I developed a module that uses prior meals and pre-meal glucose to estimate each person’s nutrient-response patterns.</p>
+          <p class="summary">I evaluated the history features with frozen TabPFN weights, using simpler history summaries and shuffled meal-response pairings as controls.</p>
         </div>
       </section>
 
@@ -148,14 +154,39 @@
         <h2 id="software-heading">Selected software</h2>
         <ul class="projects">
           <li>
-            <h3><a href="https://github.com/MyLoveSong/IndusMind">IndusMind</a></h3>
-            <p>Product search and relevance ranking with sparse and dense retrieval, rank fusion, and Qwen reranking.</p>
+            <h3>E-commerce search and relevance ranking</h3>
+            <p>I built a hybrid pipeline with BM25, BGE-M3, reciprocal rank fusion, and Qwen3 reranking. On 384 held-out WANDS queries, nDCG@10 increased from 0.706 to 0.778.</p>
+          </li>
+          <li>
+            <h3><a href="https://github.com/MyLoveSong/IndusMind">Industry report generation</a></h3>
+            <p>I contributed backend development and language model integration to a team project that combines Qwen3 adaptation and retrieval-augmented generation.</p>
           </li>
           <li>
             <h3><a href="https://github.com/MyLoveSong/ZJU-Website-searching-web">Document Search Engine</a></h3>
             <p>Java and Apache Lucene project for indexing and searching documents in multiple formats.</p>
           </li>
         </ul>
+      </section>
+
+      <section class="section" id="education" aria-labelledby="education-heading">
+        <h2 id="education-heading">Education &amp; honors</h2>
+        <div class="credentials">
+          <div>
+            <h3>Education</h3>
+            <ul>
+              <li><strong>Hangzhou City University.</strong> Bachelor’s student in Computer Science and Technology, Top Innovation Class, 2023–2027 (expected).</li>
+              <li><strong>Zhejiang University.</strong> Visiting student in Computer Science and Technology, 2025–2026.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Selected honors</h3>
+            <ul>
+              <li>Zhejiang Provincial Government Scholarship, 2026.</li>
+              <li>First Prize, provincial Network Track, 10th Huawei ICT Competition, 2026.</li>
+              <li>First-Class Scholarship for Science and Technology Innovation, 2024–2025.</li>
+            </ul>
+          </div>
+        </div>
       </section>
     </main>
     <footer><p>Zeyu Xie · Hangzhou City University</p></footer>
