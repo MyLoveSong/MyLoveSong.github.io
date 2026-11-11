@@ -47,10 +47,24 @@
     h1, h2, .paper-title { font-family: var(--serif); font-weight: 400; }
     .intro {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      grid-template-columns: minmax(0, 1fr) clamp(12rem, 24vw, 16rem);
+      grid-template-areas: "identity portrait" "bio portrait";
       align-items: center;
-      gap: 2rem 3rem;
-      padding-block: clamp(3.4rem, 8vw, 6.2rem);
+      gap: 1.15rem 3rem;
+      padding-block: clamp(3rem, 7vw, 4.75rem);
+    }
+    .identity { grid-area: identity; }
+    .bio { grid-area: bio; }
+    .portrait {
+      grid-area: portrait;
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      object-position: center 22%;
+      border: 1px solid var(--line);
+      border-radius: .4rem;
     }
     h1 { font-size: clamp(4.5rem, 10vw, 8rem); letter-spacing: -.035em; }
     .role { margin: .55rem 0 0; color: var(--accent); font-size: .94rem; font-weight: 600; }
@@ -77,9 +91,14 @@
     footer p { margin: 0; }
     @media (max-width: 42rem) {
       .shell { width: min(100% - 2rem, 65rem); }
-      .intro, .section { grid-template-columns: minmax(0, 1fr); }
+      .section { grid-template-columns: minmax(0, 1fr); }
       nav { width: 100%; gap: .3rem 1rem; }
-      .intro { gap: 1.25rem; }
+      .intro {
+        grid-template-columns: minmax(0, 1fr) clamp(5rem, 24vw, 8rem);
+        grid-template-areas: "identity portrait" "bio bio";
+        gap: 1.25rem 1rem;
+      }
+      h1 { font-size: clamp(2.85rem, 10vw, 4.5rem); }
     }
   </style>
 </head>
@@ -96,11 +115,12 @@
     </header>
     <main>
       <section class="intro" aria-labelledby="name">
-        <div>
+        <div class="identity">
           <h1 id="name">Zeyu Xie</h1>
           <p class="role">Computer Science · Hangzhou City University</p>
         </div>
-        <div>
+        <img class="portrait" src="portrait-zeyu-xie.jpg" alt="Portrait of Zeyu Xie" width="960" height="1440">
+        <div class="bio">
           <p>I am a computer science undergraduate interested in robust visual learning, multimodal machine learning, and AI for health.</p>
           <p>I was a visiting student at Zhejiang University during the 2025–2026 academic year.</p>
         </div>
