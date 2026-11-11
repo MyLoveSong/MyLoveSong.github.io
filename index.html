@@ -1,1014 +1,144 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>音乐盛宴 - 音乐家的艺术天地 | 首页</title>
-    <meta name="description" content="欢迎来到音乐盛宴，探索音乐家的艺术世界。这里有动人的旋律、深情的歌声，以及触动心灵的音乐故事。">
-    <meta name="keywords" content="音乐盛宴,音乐家,艺术天地,音乐作品,音乐表演,音乐合作">
-    
-    <!-- 性能优化 Meta 标签 -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="theme-color" content="#667eea">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    
-    <!-- 资源预加载 -->
-    <link rel="preload" href="css/main.css" as="style">
-    <link rel="preload" href="script-new.js" as="script">
-    <!-- 只在HTTP/HTTPS环境下预加载图片，避免本地文件环境的警告 -->
-    <script>
-        if (window.location.protocol !== 'file:') {
-            const images = [
-                'images/always.png',
-                'images/鸡哥肖像权.jpg',
-                'images/古典.jpg',
-                'images/实验.jpg',
-                'images/流行.jpg',
-                'images/blond.jpg',
-                'images/double take.jpg',
-                'images/How long,How low.jpg',
-                'images/pay.jpg'
-            ];
-            images.forEach(src => {
-                const link = document.createElement('link');
-                link.rel = 'preload';
-                link.href = src;
-                link.as = 'image';
-                document.head.appendChild(link);
-            });
-        }
-    </script>
-    
-    <!-- DNS 预解析 -->
-    <link rel="dns-prefetch" href="//fonts.googleapis.com">
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link rel="dns-prefetch" href="//api.github.com">
-    <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
-    <link rel="dns-prefetch" href="//unpkg.com">
-    <link rel="dns-prefetch" href="//raw.githubusercontent.com">
-    
-    <!-- 预连接 -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://api.github.com">
-    <link rel="preconnect" href="https://cdn.jsdelivr.net">
-    <link rel="preconnect" href="https://unpkg.com">
-    
-    <!-- Critical CSS - 内联首屏关键样式 -->
-    <style>
-        /* =================================
-           Critical CSS - 首屏关键样式
-           ================================= */
-
-        /* README 相关样式 */
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .readme-content::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        .readme-content::-webkit-scrollbar-track {
-            background: rgba(255,255,255,0.1);
-            border-radius: 4px;
-        }
-
-        .readme-content::-webkit-scrollbar-thumb {
-            background: rgba(139, 92, 246, 0.6);
-            border-radius: 4px;
-        }
-
-        .readme-content::-webkit-scrollbar-thumb:hover {
-            background: rgba(139, 92, 246, 0.8);
-        }
-
-        /* 基础变量 */
-        :root {
-            --primary-color: #667eea;
-            --secondary-color: #764ba2;
-            --accent-color: #f4d03f;
-            --gold-accent: #f39c12;
-            --white: #ffffff;
-            --text-color: #333333;
-            --background-color: #f8f9fa;
-            --light-color: #ffffff;
-            --dark-color: #2c3e50;
-            --muted-text: #6c757d;
-            --light-secondary: #e9ecef;
-            --border-radius: 8px;
-            --border-radius-sm: 4px;
-            --border-radius-lg: 12px;
-            --spacing-xs: 0.25rem;
-            --spacing-sm: 0.5rem;
-            --spacing-md: 1rem;
-            --spacing-lg: 1.5rem;
-            --spacing-xl: 2rem;
-            --spacing-xxl: 3rem;
-            --font-size-xs: 0.75rem;
-            --font-size-sm: 0.875rem;
-            --font-size-base: 1rem;
-            --font-size-lg: 1.125rem;
-            --font-size-xl: 1.25rem;
-            --transition-normal: 0.3s ease;
-            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
-            --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.1);
-        }
-
-        /* 基础重置 */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--background-color);
-        }
-
-        /* Header 样式 */
-        header {
-            background: var(--white);
-            padding: var(--spacing-md) var(--spacing-xl);
-            box-shadow: var(--shadow-sm);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo h1 {
-            font-size: var(--font-size-xl);
-            color: var(--primary-color);
-            margin: 0;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: var(--spacing-lg);
-        }
-
-        nav a {
-            text-decoration: none;
-            color: var(--text-color);
-            font-weight: 500;
-            transition: color var(--transition-normal);
-        }
-
-        nav a:hover {
-            color: var(--primary-color);
-        }
-
-        /* Hero 区域样式 */
-        #hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: var(--spacing-xxl) var(--spacing-xl);
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: var(--white);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-content {
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-xxl);
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .hero-text {
-            flex: 1;
-            text-align: left;
-        }
-
-        .hero-text h1 {
-            font-size: 3rem;
-            margin-bottom: var(--spacing-md);
-            font-weight: 700;
-        }
-
-        .hero-text h2 {
-            font-size: 1.5rem;
-            margin-bottom: var(--spacing-lg);
-            opacity: 0.9;
-        }
-
-        .hero-text p {
-            font-size: var(--font-size-lg);
-            margin-bottom: var(--spacing-xl);
-            opacity: 0.8;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: var(--spacing-md);
-        }
-
-        /* 关键按钮样式 */
-        .cta-button {
-            background: linear-gradient(135deg, 
-                var(--secondary-color) 0%, 
-                var(--gold-accent) 50%,
-                var(--secondary-color) 100%);
-            color: var(--white);
-            padding: var(--spacing-md) var(--spacing-lg);
-            border: none;
-            border-radius: var(--border-radius);
-            font-size: var(--font-size-base);
-            font-weight: 600;
-            cursor: pointer;
-            transition: all var(--transition-normal);
-            display: inline-block;
-            text-decoration: none;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 
-                0 4px 15px rgba(217, 119, 6, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.2);
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 
-                0 8px 25px rgba(217, 119, 6, 0.4),
-                0 4px 12px rgba(180, 83, 9, 0.3);
-            color: var(--white);
-            text-decoration: none;
-        }
-
-        /* 主题切换按钮 */
-        .theme-toggle {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: var(--spacing-sm);
-            border-radius: 50%;
-            transition: all var(--transition-normal);
-        }
-
-        .theme-toggle:hover {
-            background: rgba(102, 126, 234, 0.1);
-            transform: scale(1.1);
-        }
-
-        /* 响应式设计 */
-        @media (max-width: 768px) {
-            header {
-                padding: var(--spacing-sm) var(--spacing-md);
-                flex-direction: column;
-                gap: var(--spacing-sm);
-            }
-            
-            nav ul {
-                gap: var(--spacing-md);
-            }
-            
-            .hero-content {
-                flex-direction: column;
-                text-align: center;
-                gap: var(--spacing-xl);
-            }
-            
-            .hero-text h1 {
-                font-size: 2rem;
-            }
-            
-            .hero-text h2 {
-                font-size: 1.25rem;
-            }
-            
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-
-        /* 加载动画 */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate-fadeInUp {
-            animation: fadeInUp 0.6s ease-out;
-        }
-    </style>
-    
-    <!-- 延迟加载完整样式表 -->
-    <link rel="preload" href="css/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="css/main.css"></noscript>
-    
-    <!-- 页面加载进度条 -->
-    <div id="loading-progress" style="
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 0%;
-        height: 3px;
-        background: linear-gradient(90deg, #667eea, #764ba2);
-        z-index: 10000;
-        transition: width 0.3s ease;
-    "></div>
-    
-    <!-- 页面加载遮罩 -->
-    <div id="page-loading" style="
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 9999;
-        transition: opacity 0.5s ease;
-    ">
-        <div style="text-align: center; color: white;">
-            <div style="
-                width: 50px;
-                height: 50px;
-                border: 3px solid rgba(255, 255, 255, 0.3);
-                border-top: 3px solid #f4d03f;
-                border-radius: 50%;
-                animation: spin 1s linear infinite;
-                margin: 0 auto 1rem;
-            "></div>
-            <p style="font-size: 1.2rem; margin: 0;">🎵 音乐盛宴正在加载...</p>
-        </div>
-    </div>
-    
-    <!-- Leaflet 地图样式 -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Zeyu Xie, computer science undergraduate at Hangzhou City University. Research in robust visual learning, multimodal machine learning, and AI for health.">
+  <meta name="color-scheme" content="light">
+  <title>Zeyu Xie | Research</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f8f7f2;
+      --ink: #252a24;
+      --muted: #53594f;
+      --accent: #3b5a40;
+      --line: #d8dacf;
+      --serif: "Instrument Serif", Georgia, serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font: 1rem/1.7 Inter, system-ui, sans-serif;
+    }
+    .shell { width: min(100% - 3rem, 65rem); margin-inline: auto; }
+    a { color: var(--accent); text-underline-offset: .24em; }
+    a:hover { color: var(--ink); }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: .75rem 2rem;
+      padding-block: 1.15rem;
+      border-bottom: 1px solid var(--line);
+    }
+    header a { font-weight: 600; text-decoration: none; }
+    header a:hover { text-decoration: underline; }
+    .brand { color: var(--ink); }
+    nav { display: flex; flex-wrap: wrap; gap: .3rem 1.4rem; font-size: .85rem; }
+    h1, h2, h3 { margin: 0; line-height: 1.06; }
+    h1, h2, .paper-title { font-family: var(--serif); font-weight: 400; }
+    .intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      align-items: center;
+      gap: 2rem 3rem;
+      padding-block: clamp(3.4rem, 8vw, 6.2rem);
+    }
+    h1 { font-size: clamp(4.5rem, 10vw, 8rem); letter-spacing: -.035em; }
+    .role { margin: .55rem 0 0; color: var(--accent); font-size: .94rem; font-weight: 600; }
+    .intro p:not(.role) { margin: 0; max-width: 43ch; }
+    .intro p + p:not(.role) { margin-top: .8rem; }
+    .section {
+      display: grid;
+      grid-template-columns: minmax(10rem, 1fr) minmax(0, 3fr);
+      gap: 1.2rem 2rem;
+      border-top: 1px solid var(--line);
+      padding-block: 2.1rem;
+    }
+    h2 { font-size: clamp(2rem, 4vw, 2.8rem); }
+    h3 { font-size: 1.05rem; font-weight: 600; }
+    .paper-title { font-size: clamp(1.8rem, 4vw, 2.65rem); }
+    .paper-title a { color: var(--ink); text-decoration-thickness: 1px; }
+    .venue { margin: 0 0 .65rem; color: var(--accent); font-size: .84rem; font-weight: 600; }
+    .authors { margin: .85rem 0 .55rem; color: var(--muted); font-size: .88rem; }
+    .summary { max-width: 65ch; margin: .55rem 0 0; }
+    .projects { list-style: none; margin: 0; padding: 0; }
+    .projects li + li { margin-top: 1.1rem; }
+    .projects p { margin: .15rem 0 0; }
+    footer { border-top: 1px solid var(--line); padding-block: 1rem 2rem; color: var(--muted); font-size: .85rem; }
+    footer p { margin: 0; }
+    @media (max-width: 42rem) {
+      .shell { width: min(100% - 2rem, 65rem); }
+      .intro, .section { grid-template-columns: minmax(0, 1fr); }
+      nav { width: 100%; gap: .3rem 1rem; }
+      .intro { gap: 1.25rem; }
+    }
+  </style>
 </head>
-
 <body>
-    <!-- 页头 (header) -->
+  <div class="shell">
     <header>
-        <div class="logo">
-            <h1>🎵 音乐盛宴</h1>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="index.html" class="active" aria-label="当前页面：首页">首页</a></li>
-                <li><a href="about.html" aria-label="跳转到关于我页面">关于我</a></li>
-                <li><a href="products.html" aria-label="跳转到音乐作品页面">音乐作品</a></li>
-                <li><a href="services.html" aria-label="跳转到音乐表演页面">音乐表演</a></li>
-                <li><a href="contact.html" aria-label="跳转到音乐合作页面">音乐合作</a></li>
-                <li><a href="blog.html" aria-label="跳转到我的博客页面">我的博客</a></li>
-            </ul>
-        </nav>
-        <!-- 日夜模式切换按钮 -->
-        <button id="theme-toggle" class="theme-toggle" aria-label="切换主题">
-            <span class="theme-icon">☀️</span>
-        </button>
+      <a class="brand" href="./">Zeyu Xie</a>
+      <nav aria-label="Main navigation">
+        <a href="#publication">Publication</a>
+        <a href="#research">Research</a>
+        <a href="#software">Software</a>
+        <a href="https://github.com/MyLoveSong">GitHub</a>
+      </nav>
     </header>
+    <main>
+      <section class="intro" aria-labelledby="name">
+        <div>
+          <h1 id="name">Zeyu Xie</h1>
+          <p class="role">Computer Science · Hangzhou City University</p>
+        </div>
+        <div>
+          <p>I am a computer science undergraduate interested in robust visual learning, multimodal machine learning, and AI for health.</p>
+          <p>I was a visiting student at Zhejiang University during the 2025–2026 academic year.</p>
+        </div>
+      </section>
 
-    <!-- 主内容区 (main) -->
-    <main role="main" tabindex="-1">
-        <!-- 首页英雄区域 (hero) -->
-        <section id="hero">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1 id="typing-title" aria-live="polite" aria-label="动态标题">沉浸在音乐的无限魅力中</h1>
-                    <h2>从古典巴赫到现代流行，感受音乐的永恒力量</h2>
-                    <p>欢迎来到音乐的世界，这里有动人的旋律、深情的歌声，以及触动心灵的音乐故事。让我们一起探索音乐的奇妙境界。</p>
-                    <div class="hero-buttons">
-                                                                <a href="products.html" class="cta-button" aria-label="欣赏音乐作品，跳转到音乐作品页面">欣赏音乐作品</a>
-                        <a href="about.html" class="cta-button secondary" aria-label="了解更多，跳转到关于我页面">了解更多</a>
-                    </div>
-                </div>
-                <div class="hero-image">
-                    <img src="images/鸡哥肖像权.jpg" alt="金碧辉煌的音乐厅，钢琴在聚光灯下闪闪发光" loading="lazy" decoding="async" />
-                </div>
-            </div>
-            <div class="hero-motto">
-                <p class="motto-text">"Hast du Bach gehört? Kannst du Bach spielen? Ich singe jetzt diese Song für dich, hast du verstanden? Liebe, ich liebe dich."</p>
-                <p class="motto-subtitle">—9 12 15 22 5 25 15 21 19 25</p>
-            </div>
-        </section>
+      <section class="section" id="publication" aria-labelledby="publication-heading">
+        <h2 id="publication-heading">Publication</h2>
+        <article>
+          <p class="venue">IEEE Transactions on Multimedia · 2025</p>
+          <h3 class="paper-title"><a href="https://doi.org/10.1109/TMM.2025.3542962">Robust Visual Food Recognition for Enriching Nutrition Knowledge Bases</a></h3>
+          <p class="authors">Zhaoyan Ming, <strong>Zeyu Xie</strong>, Chao Zhang, Kui Su, Changzheng Yuan, and Tat-Seng Chua</p>
+          <p class="summary">We study how to learn reliable food recognition from noisy web images and use it to connect food photographs to nutrition knowledge bases.</p>
+        </article>
+      </section>
 
-        <!-- 关于我 (about) -->
-        <section id="about">
-            <h2>关于我</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <h3>我的音乐理念</h3>
-                    <p>音乐是世界的通用语言，它跨越国界、种族和文化。从巴赫的精妙复调到现代的自由表达，每一首音乐都承载着作者的情感和思想。</p>
-                    
-                    <h3>音乐风格探索</h3>
-                    <p>我热爱探索各种音乐风格——古典音乐的严谨优雅、爵士乐的自由奔放、流行音乐的时尚活力，以及世界音乐的异域风情。每种风格都有其独特的魅力和表达方式。</p>
-                    
-                    <h3>音乐技能</h3>
-                    <ul class="skills-list">
-                        <li>🎹 钢琴演奏</li>
-                        <li>🎤 声乐表演</li>
-                        <li>🎼 音乐创作</li>
-                        <li>🎧 音乐制作</li>
-                        <li>🎭 音乐理论</li>
-                    </ul>
-                </div>
-                
-                <div class="about-experience">
-                    <h3>音乐经历</h3>
-                    <div class="experience-timeline">
-                        <div class="experience-item">
-                            <div class="experience-year">2018-2020</div>
-                            <div class="experience-content">
-                                <h4>古典音乐</h4>
-                                <p>巴赫作品深度研究，掌握巴洛克音乐的精髓</p>
-                            </div>
-                        </div>
-                        <div class="experience-item">
-                            <div class="experience-year">2020-2022</div>
-                            <div class="experience-content">
-                                <h4>爵士乐</h4>
-                                <p>即兴演奏技巧提升，探索爵士乐的无限可能</p>
-                            </div>
-                        </div>
-                        <div class="experience-item">
-                            <div class="experience-year">2022-至今</div>
-                            <div class="experience-content">
-                                <h4>跨界融合</h4>
-                                <p>创新音乐风格探索，创造独特的音乐语言</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="skills-visualization">
-                <h3>技能概览</h3>
-                <div id="skills-container"></div>
-                <div id="radar-chart" style="margin-top: 1rem;"></div>
-            </div>
-        </section>
+      <section class="section" id="research" aria-labelledby="research-heading">
+        <h2 id="research-heading">Current research</h2>
+        <div>
+          <h3>Personalized postprandial glucose forecasting</h3>
+          <p class="summary">I lead an undergraduate project investigating how to combine meal information, pre-meal glucose, and an individual’s meal history to forecast their glucose trajectory after eating.</p>
+        </div>
+      </section>
 
-        <!-- 我的项目 (projects) -->
-        <section id="projects">
-            <h2>我的项目</h2>
-            
-            <!-- GitHub 项目展示区域 -->
-            <div class="github-projects-section">
-                <h3>💻 GitHub 开源项目</h3>
-                <div class="projects-intro">
-                    <p>这里展示我在GitHub上的开源项目，包括网站开发、音乐创作工具等。每个项目都体现了我的技术能力和创作热情。</p>
-                </div>
-                
-                <!-- GitHub项目语言筛选器 -->
-                <div id="language-filters" class="github-filters"></div>
-                
-                <!-- GitHub项目网格 -->
-                <div class="projects-grid" id="projects-grid">
-                    <!-- 动态生成的GitHub项目卡片 -->
-                    <div class="loading-state">
-                        <div class="loading-spinner"></div>
-                        <p>正在从GitHub加载项目数据...</p>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- 音乐项目展示区域 -->
-            <div class="music-projects-section">
-                <h3>🎵 音乐创作项目</h3>
-                <div class="projects-intro">
-                    <p>这里展示了我近年来创作和参与的音乐项目，每个项目都承载着独特的音乐理念和创作故事。</p>
-                </div>
-                
-                <div class="music-projects-grid">
-                    <article class="project-card music-card">
-                        <div class="project-header">
-                            <h3>🎼 《巴赫变奏曲集》</h3>
-                            <span class="project-tag">古典音乐</span>
-                        </div>
-                        <p>深度演绎巴赫经典作品，融合现代演奏技巧与古典韵味。</p>
-                        <div class="case-study">
-                            <h4>项目特色</h4>
-                            <p>这张专辑收录了巴赫最具代表性的键盘作品，包括<strong>哥德堡变奏曲</strong>和<strong>平均律钢琴曲集</strong>选段，展现了巴洛克音乐的精妙结构。</p>
-                        </div>
-                        <ul class="features-list">
-                            <li>🎹 钢琴独奏版本</li>
-                            <li>📀 高品质录音制作</li>
-                            <li>📝 详细的乐曲分析</li>
-                            <li>🎵 数字平台发布</li>
-                        </ul>
-                        <div class="project-links">
-                            <a href="#" class="project-link">试听片段</a>
-                            <a href="#" class="project-link">购买专辑</a>
-                        </div>
-                    </article>
-
-                    <article class="project-card music-card">
-                        <div class="project-header">
-                            <h3>🎤 《来自呼吸的乐章》专辑</h3>
-                            <span class="project-tag">原创音乐</span>
-                        </div>
-                        <p>融合古典与现代的原创音乐作品，表达内心深处的情感与思考。</p>
-                        <div class="case-study">
-                            <h4>创作灵感</h4>
-                            <p>这张专辑以<strong>"爱与理解"</strong>为主题，每首歌都讲述着不同的人生故事，用音乐连接心灵的桥梁。</p>
-                        </div>
-                        <ul class="features-list">
-                            <li>🎶 8首原创歌曲</li>
-                            <li>🌍 多语言演唱</li>
-                            <li>🎭 情感丰富表达</li>
-                            <li>🎬 配套MV制作</li>
-                        </ul>
-                        <div class="project-links">
-                            <a href="#" class="project-link">试听片段</a>
-                            <a href="#" class="project-link">观看MV</a>
-                        </div>
-                    </article>
-
-                    <article class="project-card music-card">
-                        <div class="project-header">
-                            <h3>🌟 《跨界音乐实验》</h3>
-                            <span class="project-tag">实验音乐</span>
-                        </div>
-                        <p>突破传统音乐界限，探索古典、爵士、电子音乐的完美融合。</p>
-                        <div class="case-study">
-                            <h4>创新理念</h4>
-                            <p>这个音乐项目将<strong>巴赫的复调技法</strong>与现代电子音乐相结合，创造出全新的音乐体验，获得了音乐界的广泛关注。</p>
-                        </div>
-                        <ul class="features-list">
-                            <li>🔄 风格跨界融合</li>
-                            <li>🤖 AI辅助创作</li>
-                            <li>🎪 现场演出版本</li>
-                            <li>👥 与知名音乐家合作</li>
-                        </ul>
-                        <div class="project-links">
-                            <a href="#" class="project-link">试听片段</a>
-                            <a href="#" class="project-link">现场演出</a>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- 兴趣爱好 (hobbies) -->
-        <section id="hobbies">
-            <h2>兴趣爱好</h2>
-            
-            <!-- 动态背景粒子 -->
-            <div class="hobby-particles">
-                <div class="particle" data-speed="2"></div>
-                <div class="particle" data-speed="3"></div>
-                <div class="particle" data-speed="1.5"></div>
-                <div class="particle" data-speed="2.5"></div>
-                <div class="particle" data-speed="1"></div>
-                <div class="particle" data-speed="3.5"></div>
-            </div>
-            
-            <div class="hobbies-content">
-                <div class="hobby-category" data-category="piano">
-                    <div class="hobby-icon">🎹</div>
-                    <div class="hobby-content-inner">
-                        <h3>钢琴演奏</h3>
-                        <p>钢琴是我最热爱的乐器，每天都会花时间练习和演奏。从巴赫的复调到肖邦的夜曲，每一首曲子都让我感受到音乐的魅力。</p>
-                        <div class="hobby-details">
-                            <span class="hobby-tag" data-tag="classical">古典音乐</span>
-                            <span class="hobby-tag" data-tag="improvisation">即兴演奏</span>
-                            <span class="hobby-tag" data-tag="theory">音乐理论</span>
-                        </div>
-                    </div>
-                    <div class="hobby-glow"></div>
-                </div>
-
-                <div class="hobby-category" data-category="composition">
-                    <div class="hobby-icon">🎼</div>
-                    <div class="hobby-content-inner">
-                        <h3>音乐创作</h3>
-                        <p>创作音乐是我表达情感和想法的方式。我喜欢尝试不同的音乐风格，将古典与现代元素融合，创造出独特的音乐作品。</p>
-                        <div class="hobby-details">
-                            <span class="hobby-tag" data-tag="original">原创音乐</span>
-                            <span class="hobby-tag" data-tag="arrangement">编曲制作</span>
-                            <span class="hobby-tag" data-tag="fusion">跨界融合</span>
-                        </div>
-                    </div>
-                    <div class="hobby-glow"></div>
-                </div>
-
-                <div class="hobby-category" data-category="vocal">
-                    <div class="hobby-icon">🎤</div>
-                    <div class="hobby-content-inner">
-                        <h3>声乐表演</h3>
-                        <p>除了器乐演奏，我也热爱声乐表演。通过学习不同语言的歌曲，我能够更好地理解不同文化的音乐表达。</p>
-                        <div class="hobby-details">
-                            <span class="hobby-tag" data-tag="german">德语歌曲</span>
-                            <span class="hobby-tag" data-tag="italian">意大利歌剧</span>
-                            <span class="hobby-tag" data-tag="chinese">中文民歌</span>
-                        </div>
-                    </div>
-                    <div class="hobby-glow"></div>
-                </div>
-
-                <div class="hobby-category" data-category="learning">
-                    <div class="hobby-icon">📚</div>
-                    <div class="hobby-content-inner">
-                        <h3>音乐学习</h3>
-                        <p>音乐学习是一个永无止境的过程。我经常参加音乐讲座、大师班，阅读音乐理论书籍，不断提升自己的音乐素养。</p>
-                        <div class="hobby-details">
-                            <span class="hobby-tag" data-tag="history">音乐史</span>
-                            <span class="hobby-tag" data-tag="harmony">和声学</span>
-                            <span class="hobby-tag" data-tag="analysis">作品分析</span>
-                        </div>
-                    </div>
-                    <div class="hobby-glow"></div>
-                </div>
-            </div>
-            
-            <!-- 技能进度条 -->
-            <div class="skills-progress">
-                <h3>技能熟练度</h3>
-                <div class="skill-bars">
-                    <div class="skill-bar" data-skill="piano" data-level="90">
-                        <div class="skill-label">钢琴演奏</div>
-                        <div class="skill-progress-bar">
-                            <div class="skill-progress-fill" data-level="90"></div>
-                        </div>
-                        <div class="skill-percentage">90%</div>
-                    </div>
-                    <div class="skill-bar" data-skill="composition" data-level="85">
-                        <div class="skill-label">音乐创作</div>
-                        <div class="skill-progress-bar">
-                            <div class="skill-progress-fill" data-level="85"></div>
-                        </div>
-                        <div class="skill-percentage">85%</div>
-                    </div>
-                    <div class="skill-bar" data-skill="vocal" data-level="80">
-                        <div class="skill-label">声乐表演</div>
-                        <div class="skill-progress-bar">
-                            <div class="skill-progress-fill" data-level="80"></div>
-                        </div>
-                        <div class="skill-percentage">80%</div>
-                    </div>
-                    <div class="skill-bar" data-skill="theory" data-level="88">
-                        <div class="skill-label">音乐理论</div>
-                        <div class="skill-progress-bar">
-                            <div class="skill-progress-fill" data-level="88"></div>
-                        </div>
-                        <div class="skill-percentage">88%</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 音乐表演与活动 -->
-        <section id="performances">
-            <h2>音乐表演与活动</h2>
-            
-            <!-- 动态音符背景 -->
-            <div class="music-notes-bg">
-                <div class="music-note" data-note="C">♪</div>
-                <div class="music-note" data-note="D">♫</div>
-                <div class="music-note" data-note="E">♬</div>
-                <div class="music-note" data-note="F">♩</div>
-                <div class="music-note" data-note="G">♭</div>
-                <div class="music-note" data-note="A">♯</div>
-            </div>
-            
-            <div class="performances-grid">
-                <div class="performance-item" data-type="classical">
-                    <div class="performance-icon">🎼</div>
-                    <div class="performance-content">
-                        <h3>古典音乐独奏会</h3>
-                        <p>定期举办钢琴独奏会，演绎巴赫、莫扎特、贝多芬等大师的经典作品。</p>
-                        <div class="performance-details">
-                            <span class="performance-tag">定期举办</span>
-                            <span class="performance-stats">⭐ 观众满意度: 98%</span>
-                        </div>
-                    </div>
-                    <div class="performance-glow"></div>
-                    <div class="performance-particles"></div>
-                </div>
-                
-                <div class="performance-item" data-type="original">
-                    <div class="performance-icon">🎤</div>
-                    <div class="performance-content">
-                        <h3>原创音乐现场演出</h3>
-                        <p>在各大音乐节和演出场所表演原创音乐作品，与观众分享音乐故事。</p>
-                        <div class="performance-details">
-                            <span class="performance-tag">巡回演出</span>
-                            <span class="performance-stats">🌍 已巡演城市: 15+</span>
-                        </div>
-                    </div>
-                    <div class="performance-glow"></div>
-                    <div class="performance-particles"></div>
-                </div>
-                
-                <div class="performance-item" data-type="teaching">
-                    <div class="performance-icon">🎹</div>
-                    <div class="performance-content">
-                        <h3>钢琴教学与指导</h3>
-                        <p>为音乐爱好者提供钢琴教学，分享演奏技巧和音乐理解。</p>
-                        <div class="performance-details">
-                            <span class="performance-tag">一对一教学</span>
-                            <span class="performance-stats">👨‍🎓 学生数量: 50+</span>
-                        </div>
-                    </div>
-                    <div class="performance-glow"></div>
-                    <div class="performance-particles"></div>
-                </div>
-                
-                <div class="performance-item" data-type="salon">
-                    <div class="performance-icon">🎵</div>
-                    <div class="performance-content">
-                        <h3>音乐沙龙与交流活动</h3>
-                        <p>组织音乐沙龙，邀请音乐家们分享经验，促进音乐文化交流。</p>
-                        <div class="performance-details">
-                            <span class="performance-tag">每月举办</span>
-                            <span class="performance-stats">🎪 累计参与: 200+</span>
-                        </div>
-                    </div>
-                    <div class="performance-glow"></div>
-                    <div class="performance-particles"></div>
-                </div>
-            </div>
-            
-            <!-- 演出统计 -->
-            <div class="performance-stats-overview">
-                <h3>演出数据统计</h3>
-                <div class="stats-grid">
-                    <div class="stat-card" data-stat="concerts">
-                        <div class="stat-icon">🎭</div>
-                        <div class="stat-number" data-target="150">0</div>
-                        <div class="stat-label">总演出场次</div>
-                    </div>
-                    <div class="stat-card" data-stat="cities">
-                        <div class="stat-icon">🌍</div>
-                        <div class="stat-number" data-target="25">0</div>
-                        <div class="stat-label">巡演城市</div>
-                    </div>
-                    <div class="stat-card" data-stat="audience">
-                        <div class="stat-icon">👥</div>
-                        <div class="stat-number" data-target="5000">0</div>
-                        <div class="stat-label">累计观众</div>
-                    </div>
-                    <div class="stat-card" data-stat="satisfaction">
-                        <div class="stat-icon">⭐</div>
-                        <div class="stat-number" data-target="98">0</div>
-                        <div class="stat-label">满意度(%)</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 人生时间轴 -->
-        <section id="timeline">
-            <h2>我的故事 · 时间轴</h2>
-            <div id="timeline-container"></div>
-        </section>
-
-        <!-- 我的足迹 · 地图 -->
-        <section id="map-section">
-            <h2>我的足迹 · 互动地图</h2>
-            <p style="color: rgba(0,0,0,0.8); margin-bottom: 1.5rem; font-size: 1rem;">
-                探索我到过的城市，每个标记都承载着独特的音乐记忆和故事
-            </p>
-            
-            <div id="map-filters"></div>
-            
-            <div id="map" style="width: 100%; height: 400px; border-radius: 12px; overflow: hidden;">
-                <div class="map-loading">
-                    <div style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
-                        <div style="width: 40px; height: 40px; border: 3px solid rgba(244, 208, 63, 0.3); border-top: 3px solid #f4d03f; border-radius: 50%; animation: spin 1s linear infinite;"></div>
-                        <span style="color: #000;">正在加载地图数据...</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="map-stats" id="map-stats" style="display: none;">
-                <div class="map-stat">
-                    <span class="map-stat-number" id="total-cities">0</span>
-                    <span class="map-stat-label">访问城市</span>
-                </div>
-                <div class="map-stat">
-                    <span class="map-stat-number" id="total-types">0</span>
-                    <span class="map-stat-label">城市类型</span>
-                </div>
-                <div class="map-stat">
-                    <span class="map-stat-number" id="current-filter">全部</span>
-                    <span class="map-stat-label">当前筛选</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- 音乐合作联系 -->
-        <section id="contact">
-            <h2>音乐合作与交流</h2>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h3>让我们一起创造音乐</h3>
-                    <p>如果您对音乐充满热爱，欢迎与我交流合作。让我们一起创造美妙的音乐体验，传递音乐的无限魅力。</p>
-                    <div class="contact-methods">
-                        <div class="contact-method">
-                            <span class="contact-icon">📧</span>
-                            <div>
-                                <h4>邮箱联系</h4>
-                                <p>xiezeyu5201314@qq.com</p>
-                            </div>
-                        </div>
-                        <div class="contact-method">
-                            <span class="contact-icon">📱</span>
-                            <div>
-                                <h4>微信联系</h4>
-                                <p>GeniusBoy520xxxie</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <form action="https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID" method="post" class="contact-form" id="contact-form" aria-label="联系表单" novalidate>
-                    <div class="form-group">
-                        <label for="name">姓名 <span class="required" aria-label="必填项">*</span></label>
-                        <input type="text" id="name" name="name" required 
-                               aria-label="请输入您的姓名" 
-                               aria-describedby="name-help"
-                               aria-required="true"
-                               autocomplete="name" />
-                        <div id="name-help" class="form-help">请输入您的真实姓名</div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">邮箱 <span class="required" aria-label="必填项">*</span></label>
-                        <input type="email" id="email" name="email" required 
-                               aria-label="请输入您的邮箱地址" 
-                               aria-describedby="email-help"
-                               aria-required="true"
-                               autocomplete="email" />
-                        <div id="email-help" class="form-help">我们将通过此邮箱与您联系</div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="phone">电话</label>
-                        <input type="tel" id="phone" name="phone" 
-                               aria-label="请输入您的电话号码" 
-                               aria-describedby="phone-help"
-                               autocomplete="tel" />
-                        <div id="phone-help" class="form-help">可选，便于我们快速联系您</div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="message">询问内容 <span class="required" aria-label="必填项">*</span></label>
-                        <textarea id="message" name="message" required 
-                                  aria-label="请详细描述您的需求" 
-                                  aria-describedby="message-help"
-                                  aria-required="true"
-                                  rows="5"></textarea>
-                        <div id="message-help" class="form-help">请描述您的音乐项目、合作想法或参与意向，我们很期待与您的音乐交流</div>
-                    </div>
-
-                    <button type="submit" class="submit-btn" aria-label="提交联系表单">提交</button>
-                    <div id="form-status" class="form-help" aria-live="polite" style="margin-top: 0.5rem;"></div>
-                </form>
-            </div>
-        </section>
+      <section class="section" id="software" aria-labelledby="software-heading">
+        <h2 id="software-heading">Selected software</h2>
+        <ul class="projects">
+          <li>
+            <h3><a href="https://github.com/MyLoveSong/IndusMind">IndusMind</a></h3>
+            <p>Product search and relevance ranking with sparse and dense retrieval, rank fusion, and Qwen reranking.</p>
+          </li>
+          <li>
+            <h3><a href="https://github.com/MyLoveSong/ZJU-Website-searching-web">Document Search Engine</a></h3>
+            <p>Java and Apache Lucene project for indexing and searching documents in multiple formats.</p>
+          </li>
+        </ul>
+      </section>
     </main>
-
-    <!-- 页脚 (footer) -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>🎵 音乐盛宴</h3>
-                <p>让音乐连接世界，传递爱与美好。</p>
-            </div>
-            
-            <div class="footer-section">
-                <h4>快速链接</h4>
-                <nav>
-                    <ul>
-                        <li><a href="index.html">首页</a></li>
-                        <li><a href="about.html">关于我</a></li>
-                        <li><a href="products.html">音乐作品</a></li>
-                        <li><a href="services.html">音乐表演</a></li>
-                    </ul>
-                </nav>
-            </div>
-            
-            <div class="footer-section">
-                <h4>法律信息</h4>
-                <nav>
-                    <ul>
-                        <li><a href="privacy-policy.html">隐私政策</a></li>
-                        <li><a href="terms-of-use.html">使用条款</a></li>
-                        <li><a href="contact.html">音乐合作</a></li>
-                    </ul>
-                </nav>
-            </div>
-            
-            <div class="footer-section">
-                <h4>关注我们</h4>
-                <div class="social-media">
-                    <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" aria-label="访问我们的Facebook页面">
-                        <span>📘</span>
-                        <span class="social-text">Facebook</span>
-                    </a>
-                    <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer" aria-label="访问我们的Twitter页面">
-                        <span>🐦</span>
-                        <span class="social-text">Twitter</span>
-                    </a>
-                    <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="访问我们的LinkedIn页面">
-                        <span>💼</span>
-                        <span class="social-text">LinkedIn</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-        
-        <div class="footer-bottom">
-            <p>让音乐连接世界.</p>
-        </div>
-    </footer>
-
-    <!-- JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- 第三方库 -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
-    
-    <!-- 模块化JavaScript文件 -->
-    <script src="js/project-manager.js"></script>
-    <script src="js/skill-visualizer.js"></script>
-    <script src="js/timeline-manager.js"></script>
-    <script src="js/blog-system.js"></script>
-    <script src="js/map-manager.js"></script>
-    <script src="js/theme-manager.js"></script>
-    <script src="js/ui-effects.js"></script>
-    <script src="js/music-website-core.js"></script>
-    <script src="js/game-system.js"></script>
-    <script src="js/hobby-performance-effects.js"></script>
-    
-    <!-- 主入口文件 -->
-    <script src="script-new.js"></script>
-    
-    <!-- 地图错误防护脚本 -->
-    <script>
-        // 防止地图错误阻止其他功能
-        window.addEventListener('error', function(event) {
-            if (event.filename && event.filename.includes('DivOverlay.js')) {
-                console.warn('⚠️ 地图相关错误已捕获，继续执行其他功能:', event.message);
-                event.preventDefault();
-                return false;
-            }
-        });
-        
-        // 地图初始化防护
-        window.addEventListener('DOMContentLoaded', function() {
-            // 延迟初始化地图，避免阻塞其他功能
-            setTimeout(function() {
-                try {
-                    if (typeof MapManager !== 'undefined' && window.mapManager) {
-                        console.log('🗺️ 安全初始化地图...');
-                        window.mapManager.setupTravelMap().catch(function(error) {
-                            console.warn('⚠️ 地图初始化失败，但不影响其他功能:', error.message);
-                            // 显示友好的错误提示
-                            const mapEl = document.getElementById('map');
-                            if (mapEl) {
-                                mapEl.innerHTML = `
-                                    <div style="
-                                        display: flex; flex-direction: column; justify-content: center; 
-                                        align-items: center; height: 100%; color: #6b7280; text-align: center; padding: 2rem;
-                                    ">
-                                        <div style="font-size: 3rem; margin-bottom: 1rem;">🗺️</div>
-                                        <div style="font-size: 1.2rem; margin-bottom: 1rem;">地图暂时不可用</div>
-                                        <div style="color: #9ca3af; margin-bottom: 1.5rem;">地图功能正在维护中，其他功能正常使用</div>
-                                    </div>
-                                `;
-                            }
-                        });
-                    }
-                } catch (error) {
-                    console.warn('⚠️ 地图管理器不可用，但不影响其他功能:', error.message);
-                }
-            }, 2000); // 延迟2秒初始化
-        });
-    </script>
+    <footer><p>Zeyu Xie · Hangzhou City University</p></footer>
+  </div>
 </body>
-
 </html>
