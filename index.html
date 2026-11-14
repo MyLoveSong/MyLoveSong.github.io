@@ -143,6 +143,13 @@
           <p class="authors">Zhaoyan Ming, <strong>Zeyu Xie</strong>, Chao Zhang, Kui Su, Changzheng Yuan, and Tat-Seng Chua</p>
           <p class="summary">We use language models to expand food names and develop cAUM and AccGap to address label noise in web images. The resulting food recognition system connects photographs to a nutrition knowledge base.</p>
           <p class="summary"><strong>My contribution.</strong> As the first student author, I led the experiments and manuscript writing under my advisor’s supervision. I also led the provincial undergraduate research project behind the paper, contributing to food selection, synonym expansion, and web-image collection.</p>
+          <details class="summary" id="research-video">
+            <summary style="cursor: pointer"><strong>Research Video</strong> · 7:40 · English subtitles</summary>
+            <video controls playsinline preload="none" width="1228" height="768" style="display: block; width: 100%; height: auto; margin-top: .75rem" aria-label="Research presentation on robust visual food recognition">
+              <source src="./research-talk.mp4" type="video/mp4">
+              <a href="./research-talk.mp4">Open the research video (MP4)</a>
+            </video>
+          </details>
         </article>
       </section>
 
@@ -261,5 +268,15 @@
     </main>
     <footer><p>Zeyu Xie · Hangzhou City University</p></footer>
   </div>
+  <script>
+    const talk = document.getElementById('research-video');
+    if (location.hash === '#research-video') talk.open = true;
+
+    const video = talk.querySelector('video');
+    talk.querySelector('summary').addEventListener('click', () => {
+      if (talk.open) video.pause();
+      else video.play().catch(() => {});
+    });
+  </script>
 </body>
 </html>
